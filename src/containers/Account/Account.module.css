@@ -1,0 +1,23 @@
+.ProfileContainer{
+    float: left;
+    width: 70%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background-color: aqua;
+}
+
+.QuickLinkContainer{
+    float: right;
+    width: 30%;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background-color: blueviolet;
+}
+
+.RankingContainer {
+    float: none;
+    width: 100%;
+    padding: 2% 30px;
+    box-sizing: border-box;
+    background-color: lightblue;
+}
