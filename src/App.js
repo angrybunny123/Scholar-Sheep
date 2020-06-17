@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
 import NavBarNoAuth from "./components/NavBar/NavBarNoAuth";
-import Footer from "./components/footer/footer";
 
 import Homepage from "./containers/Homepage/Homepage";
 import Auth from "./containers/Auth/Auth";
@@ -23,22 +22,18 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       navBar = <NavBar />;
     }
-    let footer = <Footer />;
-    if (this.props.loading) {
-      footer = null;
-    }
+
     return (
-      <Router >
+      <Router>
         {navBar}
         <div className="NavigationBar">
           <Route path="/" exact component={Homepage} />
-          <Route path="/account" component={Account}/>
+          <Route path="/account" component={Account} />
           <Route path="/quizzes" />
           <Route path="/createQuiz" component={CreateQuiz} />
           <Route path="/about" />
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
-          {footer}
         </div>
       </Router>
     );
