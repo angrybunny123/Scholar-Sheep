@@ -1,0 +1,23 @@
+.QuestionContainer {
+  display: block;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.OptionContainer {
+  padding: 0.5rem;
+}
+
+.OptionContainer button {
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  padding: 0.1rem 0.2rem;
+  border: 2px solid #627dc2;
+  border-radius: 10px;
+}
+
+.OptionContainer button:focus {
+  background-color: limegreen;
+}

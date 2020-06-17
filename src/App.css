@@ -1,0 +1,17 @@
+.NavBarLink {
+  color: black;
+  text-decoration: inherit;
+}
+
+.NavBarLink:hover {
+  color: inherit;
+}
+
+.NavBarLink img {
+  width: 6rem;
+}
+
+.NavBarLink img:hover {
+  border: 2px solid #fff;
+  box-shadow: 5px 5px 2.5px #ccc;
+}
