@@ -96,7 +96,14 @@ class CreateQuiz extends Component {
       );
     }
     if (this.state.loading === true) {
-      page = <Spinner />;
+      page = (
+        <div>
+          <Spinner />;
+          <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
+            Sending your quiz...
+          </p>
+        </div>
+      );
     }
 
     return <div>{page}</div>;
