@@ -8,6 +8,7 @@ import Footer from "./components/footer/footer";
 
 import Homepage from "./containers/Homepage/Homepage";
 import Auth from "./containers/Auth/Auth";
+import Account from "./containers/Account/Account";
 import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
 
@@ -22,22 +23,22 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       navBar = <NavBar />;
     }
-    // let footer = <Footer />;
-    // if (this.props.loading) {
-    //   footer = null;
-    // }
+    let footer = <Footer />;
+    if (this.props.loading) {
+      footer = null;
+    }
     return (
-      <Router>
+      <Router >
         {navBar}
         <div className="NavigationBar">
           <Route path="/" exact component={Homepage} />
-          <Route path="/account" />
+          <Route path="/account" component={Account}/>
           <Route path="/quizzes" />
           <Route path="/createQuiz" component={CreateQuiz} />
           <Route path="/about" />
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
-          {/* {footer} */}
+          {footer}
         </div>
       </Router>
     );
