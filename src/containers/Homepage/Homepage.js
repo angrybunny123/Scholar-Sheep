@@ -8,23 +8,27 @@ import Container from "react-bootstrap/Container";
 import DailyQuiz from "./DailyQuiz/DailyQuiz";
 import HotTopics from "./HotTopics/HotTopics";
 import FunFact from "./FunFact/FunFact";
+import Footer from "../../components/footer/footer";
 
 class Homepage extends Component {
   render() {
     return (
-      <Container fluid className={classes.Homepage}>
-        <Row>
-          <Col className="col-md-4 col-12">
-            <DailyQuiz />
-          </Col>
-          <Col className="col-md-4 col-12">
-            <FunFact />
-          </Col>
-          <Col className="col-md-4 col-12">
-            <HotTopics />
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <Container fluid className={classes.Homepage}>
+          <Row>
+            <Col className="col-md-4 col-12">
+              <DailyQuiz />
+            </Col>
+            <Col className="col-md-4 col-12">
+              <FunFact />
+            </Col>
+            <Col className="col-md-4 col-12">
+              <HotTopics />
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </div>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
+import classes from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 
 import orbitalLogo from "../../assets/orbitallogo.png";
@@ -30,37 +31,37 @@ const navBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link>
-            <Link className="NavBarLink" to="/">
+            <Link className={classes.NavBarLink} to="/">
               {/* <img src={homeButton} alt="homeButton" /> */}
               Home
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/account">
+            <Link className={classes.NavBarLink} to="/account">
               {/* <img src={accountButton} alt="accountButton" /> */}
               Account
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/quizzes">
+            <Link className={classes.NavBarLink} to="/quizzes">
               {/* <img src={quizzesButton} alt="quizzesButton" /> */}
               Quizzes
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/createQuiz">
+            <Link className={classes.NavBarLink} to="/createQuiz">
               {/* <img src={createButton} alt="createButton" /> */}
               Create Quiz
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/about">
+            <Link className={classes.NavBarLink} to="/about">
               {/* <img src={aboutButton} alt="aboutButton" /> */}
               About
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/logout">
+            <Link className={classes.NavBarLink} to="/logout">
               Logout
             </Link>
           </Nav.Link>

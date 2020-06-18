@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import classes from "./NavBar.module.css";
 
 import { Link } from "react-router-dom";
 
@@ -30,19 +31,19 @@ const navBarNoAuth = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link>
-            <Link className="NavBarLink" to="/">
+            <Link className={classes.NavBarLink} to="/">
               {/* <img src={homeButton} alt="homeButton" /> */}
               Home
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/about">
+            <Link className={classes.NavBarLink} to="/about">
               {/* <img src={aboutButton} alt="aboutButton" /> */}
               About
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="NavBarLink" to="/auth">
+            <Link className={classes.NavBarLink} to="/auth">
               {/* <img src={aboutButton} alt="aboutButton" /> */}
               Login
             </Link>
