@@ -5,8 +5,10 @@ import QuestionPage from "./QuestionPage/QuestionPage";
 
 import { connect } from "react-redux";
 import axios from "../../axios-scholarsheep";
+import classes from "./CreateQuiz.module.css";
 
 import Spinner from "../../components/UI/Spinner/Spinner";
+import Button from "react-bootstrap/Button";
 
 class CreateQuiz extends Component {
   state = {
@@ -20,6 +22,8 @@ class CreateQuiz extends Component {
     questionNumber: 1,
     coverPage: true,
     loading: false,
+    quizSent: false,
+    error: null,
   };
 
   switchToQuestions = (data) => {
@@ -40,7 +44,10 @@ class CreateQuiz extends Component {
   };
 
   submitHandler = (data) => {
-    const newQuestions = this.state.questions.concat(data);
+    let newQuestions = this.state.questions;
+    if (data !== null) {
+      newQuestions = this.state.questions.concat(data);
+    }
     this.setState(
       {
         questionNumber: this.state.questionNumber,
@@ -56,22 +63,25 @@ class CreateQuiz extends Component {
         delete quiz.loading;
         delete quiz.coverPage;
         delete quiz.questionNumber;
+        delete quiz.quizSent;
+        delete quiz.error;
         axios
           .post("/quizzes.json", quiz)
           .then((response) => {
-            console.log(response);
             this.setState({
               loading: false,
+              quizSent: true,
             });
 
-            this.props.history.push("/");
+            // this.props.history.push("/");
           })
           .catch((error) => {
-            console.log(error);
             this.setState({
               loading: false,
+              quizSent: true,
+              error: error.message,
             });
-            this.props.history.push("/");
+            // this.props.history.push("/");
           });
       }
     );
@@ -97,13 +107,45 @@ class CreateQuiz extends Component {
     }
     if (this.state.loading === true) {
       page = (
-        <div>
-          <Spinner />;
-          <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
-            Sending your quiz...
-          </p>
+        <div className={classes.Sending}>
+          <Spinner />
+          <p>Sending your quiz...</p>
         </div>
       );
+    } else if (this.state.quizSent === true) {
+      if (this.state.error) {
+        page = (
+          <div className={classes.Error}>
+            <p>Something went wrong! :(</p>
+            <section>Error: {this.state.error}</section>
+            <Button
+              variant="secondary"
+              onClick={() => this.props.history.push("/")}
+            >
+              Go back to home page
+            </Button>
+            <Button variant="success" onClick={() => this.submitHandler(null)}>
+              Try Again
+            </Button>
+          </div>
+        );
+      } else {
+        page = (
+          <div className={classes.Success}>
+            <p>Your quiz has been submitted successfully :)</p>
+
+            <Button
+              variant="secondary"
+              onClick={() => this.props.history.push("/")}
+            >
+              Go back to home page
+            </Button>
+            <Button variant="success" onClick={() => this.props.history.go(0)}>
+              Create another quiz
+            </Button>
+          </div>
+        );
+      }
     }
 
     return <div>{page}</div>;

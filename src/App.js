@@ -10,6 +10,7 @@ import Auth from "./containers/Auth/Auth";
 import Account from "./containers/Account/Account";
 import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
+import Quizzes from "./containers/Quizzes/Quizzes";
 
 import * as actions from "./store/actions/index";
 
@@ -29,7 +30,7 @@ class App extends Component {
         <div className="NavigationBar">
           <Route path="/" exact component={Homepage} />
           <Route path="/account" component={Account} />
-          <Route path="/quizzes" />
+          <Route path="/quizzes" component={Quizzes} />
           <Route path="/createQuiz" component={CreateQuiz} />
           <Route path="/about" />
           <Route path="/auth" component={Auth} />

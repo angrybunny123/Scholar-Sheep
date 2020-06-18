@@ -1,0 +1,11 @@
+.Error {
+  color: red;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.Heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}

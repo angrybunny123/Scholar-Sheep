@@ -1,8 +1,5 @@
-export { 
-    auth, 
-    logout,
-    setAuthRedirectPath,
-    authCheckState } from "./auth";
+export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
 
-export {
-    initUserDetails } from "./account";
+export { initUserDetails } from "./account";
+
+export { fetchQuizzes } from "./quizzes";

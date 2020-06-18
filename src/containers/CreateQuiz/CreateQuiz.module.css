@@ -1,0 +1,35 @@
+.Sending {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.Error {
+  margin: 2rem;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  border: 1px solid black;
+}
+
+.Error section {
+  color: red;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0.8rem;
+}
+
+.Error Button {
+  margin-right: 0.3rem;
+}
+
+.Success {
+  margin: 2rem;
+  padding: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  border: 1px solid black;
+}
+
+.Success Button {
+  margin-right: 0.3rem;
+}
