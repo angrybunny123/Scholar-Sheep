@@ -6,7 +6,8 @@ const quickLinks = (props) => {
     return (
         <div className={classes.QuickLink}>
             <h className={classes.LinkName}>{props.LinkName}</h>
-            <button>Lets Go</button>
+            <button
+                onClick={props.clicked}>Lets Go</button>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { Container, Col, Row } from 'react-bootstrap';
 
@@ -8,29 +9,49 @@ import QuickLinks from '../../components/Account/QuickLinks/QuickLinks';
 import Profile from '../../components/Account/Profile/Profile';
 import History from '../../components/Account/History/History';
 import Award from '../../components/Account/Award/Award';
+import * as actions from "../../store/actions/index";
 
 import Kenneth from "../../assets/kenneth.jpg";
 import Pennhan from "../../assets/pennhan.jpg";
 
-class Account extends Component { 
+class Account extends Component {
+
+    // componentDidMount() {
+    //     this.props.onInitUserDetails();
+    // }
+
+    createQuizLink = () => {
+        this.props.history.push('/createQuiz');
+    }
+
+    quizListLink = () => {
+        this.props.history.push('/quizzes');
+    }
+
     render () {
         return (
             <div>
+            <Container fluid> 
                 <Row>
                     <Col>
                         <Profile
+                            displaypic={Kenneth}
                             name="Scholarsheep"
                             email="Test@Test.com"
-                            level="Level 100"
+                            level= "100"
                         />
                     </Col>
                     <Col>
                         <QuickLinks
+                            clicked={this.createQuizLink}
                             LinkName=" Create A Quiz "/>
                         <QuickLinks
-                            LinkName=" Quiz Link "/>
+                            clicked={this.quizListLink}
+                            LinkName=" Quiz List "/>
                     </Col>
                 </Row>
+            </Container>
+            <Container fluid className={classes.bottomcontainer}>
                 <Row>
                     <Col>
                         <History />
@@ -58,20 +79,24 @@ class Account extends Component {
                         </Row>
                     </Col>
                 </Row>
+            </Container>
             </div>
         );
     }
 }
 
-// const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+    return {
+        email: state.email,
+        award1: state.award1,
+        award2: state.award2,
+        award3: state.award3,
+    };
+};
+
+// const mapDispatchToProps = (dispatch) => {
 //     return {
-
-//     }
-// }
-
-// const mapDispatchToProps = () => {
-//     return {
-
+//         onInitUserDetails: () => dispatch(actions.initUserDetails())
 //     }
 // }
 

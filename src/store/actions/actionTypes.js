@@ -4,3 +4,9 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 export const SET_AUTH_REDIRECT_PATH = " SET_AUTH_REDIRECT_PATH";
+
+export const SET_USER_DETAILS = "SET_USER_DETAILS";
+export const SET_USER_DETAILS_FAIL = "SET_USER_DETAILS_FAIL";
+export const CHANGE_AWARD_1 = "CHANGE_AWARD_1";
+export const CHANGE_AWARD_2 = "CHANGE_AWARD_2";
+export const CHANGE_AWARD_3 = "CHANGE_AWARD_3";

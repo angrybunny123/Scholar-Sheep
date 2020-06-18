@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Profile.module.css';
+import classes from './Profile.module.css';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
 
@@ -10,11 +10,11 @@ const profile = (props) => {
             <Container>
                 <Row>
                     {/* <Image src= {require( `${props.image}` )} alt={props.imagealt} roundedCircle className="displaypicture" /> */}
-                    <p> There will be a display picture </p>
+                    <Image src={props.displaypic} roundedCircle className={classes.displaypic} />
                 </Row>
-                <Row> Name:  { props.name } </Row>
-                <Row> Email: { props.email }</Row>
-                <Row> Level { props.level } </Row>
+                <Row className={classes.restrow}> Name:  { props.name } </Row>
+                <Row className={classes.restrow}> Email: { props.email }</Row>
+                <Row className={classes.btmrow}> Level: { props.level } </Row>
             </Container>
         </div>
     );
