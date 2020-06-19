@@ -193,9 +193,22 @@ class QuizStart extends Component {
     );
 
     if (this.state.submitted === true) {
+      let message = (
+        <p className={classes.Message}>
+          Good job you smart devil, you passed ;)
+        </p>
+      );
+      if (this.state.score < this.state.questions.length / 2) {
+        message = (
+          <p className={classes.Message}>:( Aw... better luck next time!</p>
+        );
+      }
       page = (
         <div className={classes.FinalScore}>
-          <p>Your score is: {this.state.score}</p>
+          <p>
+            Your score is: {this.state.score}/ {this.state.questions.length}
+          </p>
+          {message}
           <Button
             variant="outline-success"
             onClick={() => this.props.history.push("/quizzes")}
