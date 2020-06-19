@@ -16,13 +16,13 @@ class Homepage extends Component {
       <div>
         <Container fluid className={classes.Homepage}>
           <Row>
-            <Col className="col-md-4 col-12">
+            <Col className="col-md-4 col-xs-12 col-12">
               <DailyQuiz />
             </Col>
-            <Col className="col-md-4 col-12">
+            <Col className="col-md-4 col-xs-12 col-12">
               <FunFact />
             </Col>
-            <Col className="col-md-4 col-12">
+            <Col className="col-md-4 col-xs-12 col-12">
               <HotTopics />
             </Col>
           </Row>

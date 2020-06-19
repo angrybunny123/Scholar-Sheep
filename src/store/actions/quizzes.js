@@ -1,6 +1,13 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-scholarsheep";
 
+export const quizFilter = (quizzes) => {
+  return {
+    type: actionTypes.QUIZ_FILTER,
+    quizzes: quizzes,
+  };
+};
+
 export const fetchQuizzesSuccess = (quizzes) => {
   return {
     type: actionTypes.FETCH_QUIZZES_SUCCESS,

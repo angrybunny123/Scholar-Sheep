@@ -16,6 +16,7 @@ import FormControl from "react-bootstrap/FormControl";
 class QuizList extends Component {
   state = {
     booleanArray: [],
+    categories: ["Animals", "Math", "Sports", "Emotions"],
   };
 
   handleClose = (index) => {
@@ -48,6 +49,21 @@ class QuizList extends Component {
 
   render() {
     let quizzes = <Spinner />;
+    const dropDown = this.state.categories.map((category) => {
+      return (
+        <Dropdown.Item
+          onClick={() => {
+            const quizzesCopy = [...this.props.quizzes];
+            const newQuizzes = quizzesCopy.filter(
+              (quiz) => quiz.category === category
+            );
+            this.props.onSearch(newQuizzes);
+          }}
+        >
+          {category}
+        </Dropdown.Item>
+      );
+    });
     if (this.props.error !== "") {
       quizzes = <div className={classes.Error}>{this.props.error} :(</div>;
     } else if (!this.props.loading) {
@@ -61,8 +77,15 @@ class QuizList extends Component {
               title="Sort By"
               id="input-group-dropdown-1"
             >
-              <Dropdown.Item>Date Created</Dropdown.Item>
-
+              <Dropdown.Item
+                onClick={() => {
+                  const quizzesCopy = [...this.props.quizzes];
+                  const newQuizzes = quizzesCopy.reverse();
+                  this.props.onSearch(newQuizzes);
+                }}
+              >
+                Date Created
+              </Dropdown.Item>
               <DropdownButton
                 style={{ marginLeft: "0.6rem" }}
                 drop={"right"}
@@ -70,15 +93,39 @@ class QuizList extends Component {
                 title="Categories"
                 block
               >
-                <Dropdown.Item eventKey="1">Animals</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Math</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Sports</Dropdown.Item>
+                {dropDown}
               </DropdownButton>
-
-              <Dropdown.Item>No. Attempts</Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  const quizzesCopy = [...this.props.quizzes];
+                  const newQuizzes = quizzesCopy.sort((a, b) =>
+                    a.popularity > b.popularity ? -1 : 1
+                  );
+                  this.props.onSearch(newQuizzes);
+                }}
+              >
+                No. Attempts
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item
+                onClick={() => {
+                  const quizzesCopy = [...this.props.quizzes];
+                  this.props.onSearch(quizzesCopy);
+                }}
+              >
+                View All Quizzes
+              </Dropdown.Item>
             </DropdownButton>
             <FormControl
-              placeholder="Search..."
+              onChange={(event) => {
+                const input = event.target.value.toLowerCase();
+                const quizzesCopy = [...this.props.quizzes];
+                const newQuizzes = quizzesCopy.filter((quiz) =>
+                  quiz.name.toLowerCase().includes(input)
+                );
+                this.props.onSearch(newQuizzes);
+              }}
+              placeholder="Search quiz..."
               aria-describedby="basic-addon1"
             />
           </InputGroup>
@@ -94,7 +141,7 @@ class QuizList extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.quizzes.map((quiz, index) => (
+              {this.props.quizzesDisplayed.map((quiz, index) => (
                 <tr>
                   <td>{index + 1}</td>
                   <td>{quiz.category}</td>
@@ -131,6 +178,7 @@ class QuizList extends Component {
 const mapStateToProps = (state) => {
   return {
     quizzes: state.quizzes.quizzes,
+    quizzesDisplayed: state.quizzes.quizzesDisplayed,
     loading: state.quizzes.loading,
     error: state.quizzes.error,
     currentQuiz: state.quizzes.currentQuiz,
@@ -140,6 +188,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //action must be executed ()!
+    onSearch: (quizzes) => dispatch(actions.quizFilter(quizzes)),
     onStartQuiz: (quiz) => dispatch(actions.quizStart(quiz)),
     onFetchQuizzes: () => dispatch(actions.fetchQuizzes()),
   };
