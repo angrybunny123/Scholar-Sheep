@@ -11,6 +11,7 @@ import Account from "./containers/Account/Account";
 import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
 import Quizzes from "./containers/Quizzes/Quizzes";
+import QuizStart from "./containers/QuizStart/QuizStart";
 
 import * as actions from "./store/actions/index";
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path="/createQuiz" component={CreateQuiz} />
           <Route path="/about" />
           <Route path="/auth" component={Auth} />
+          <Route path="/quizStart" component={QuizStart} />
           <Route path="/logout" component={Logout} />
         </div>
       </Router>

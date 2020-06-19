@@ -30,7 +30,7 @@ class CoverPage extends Component {
   render() {
     return (
       <div className={classes.coverPage}>
-        <p style={{ textAlign: "center", margin: "2rem", fontSize: "2rem" }}>
+        <p style={{ textAlign: "center", margin: "2rem", fontSize: "1.8rem" }}>
           Create a quiz!
         </p>
         <Form>

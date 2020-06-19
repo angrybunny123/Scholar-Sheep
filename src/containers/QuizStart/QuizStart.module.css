@@ -1,0 +1,39 @@
+.Clock {
+  margin-top: 15rem;
+  padding: 3rem 0rem 3rem 0rem;
+}
+
+.Clock div {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ClockFinishing {
+  color: red;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.FinalScore {
+  margin: 2rem;
+  padding: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 1px solid black;
+}
+
+.UnselectedQuiz {
+  margin: 2rem;
+  padding: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 1px solid black;
+}
+
+.Processing {
+  padding: 5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}

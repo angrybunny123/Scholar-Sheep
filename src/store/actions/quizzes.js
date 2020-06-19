@@ -42,3 +42,47 @@ export const fetchQuizzes = () => {
       });
   };
 };
+
+export const quizStart = (quiz) => {
+  console.log(quiz);
+  return {
+    type: actionTypes.QUIZ_START,
+    quiz: quiz,
+  };
+};
+
+export const submitQuizSuccess = (id, orderData) => {
+  return {
+    type: actionTypes.SUBMIT_QUIZ_SUCCESS,
+    orderId: id,
+    orderData: orderData,
+  };
+};
+
+export const submitQuizFail = (error) => {
+  return {
+    type: actionTypes.SUBMIT_QUIZ_FAIL,
+    error: error,
+  };
+};
+
+export const submitQuizStart = () => {
+  return {
+    type: actionTypes.SUBMIT_QUIZ_START,
+  };
+};
+
+//more can be done here when a quiz is submitted
+export const submitQuiz = (quiz, id) => {
+  return (dispatch) => {
+    dispatch(submitQuizStart());
+    axios
+      .put("/quizzes/" + id + ".json", quiz)
+      .then((response) => {
+        dispatch(submitQuizSuccess(response.data, quiz));
+      })
+      .catch((error) => {
+        dispatch(submitQuizFail(error));
+      });
+  };
+};

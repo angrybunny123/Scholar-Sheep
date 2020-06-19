@@ -2,6 +2,8 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
+import { Link } from "react-router-dom";
+
 const modal = (props) => {
   return (
     <div>
@@ -12,7 +14,7 @@ const modal = (props) => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>{props.quizName}</Modal.Title>
+          <Modal.Title>Title: {props.quizName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>{props.description}</div>
@@ -22,7 +24,9 @@ const modal = (props) => {
             Close
           </Button>
 
-          <Button variant="success">Start Quiz</Button>
+          <Link to="/quizStart" onClick={props.click}>
+            <Button variant="success">Start Quiz</Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>
