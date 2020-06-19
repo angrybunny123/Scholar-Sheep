@@ -8,6 +8,13 @@ export const quizFilter = (quizzes) => {
   };
 };
 
+export const quizSearch = (quizzes) => {
+  return {
+    type: actionTypes.QUIZ_SEARCH,
+    quizzes: quizzes,
+  };
+};
+
 export const fetchQuizzesSuccess = (quizzes) => {
   return {
     type: actionTypes.FETCH_QUIZZES_SUCCESS,

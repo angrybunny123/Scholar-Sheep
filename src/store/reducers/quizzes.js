@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   quizzes: [],
+  quizzesCopy: [],
   quizzesDisplayed: [],
   loading: false,
   error: "",
@@ -11,7 +12,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.QUIZ_FILTER:
-      console.log(action.quizzes);
+      return {
+        ...state,
+        quizzesCopy: action.quizzes,
+        quizzesDisplayed: action.quizzes,
+      };
+    case actionTypes.QUIZ_SEARCH:
       return {
         ...state,
         quizzesDisplayed: action.quizzes,
@@ -25,6 +31,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         quizzes: action.quizzes,
+        quizzesCopy: action.quizzes,
         quizzesDisplayed: action.quizzes,
         error: "",
         loading: false,

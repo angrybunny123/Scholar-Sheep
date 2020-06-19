@@ -48,7 +48,12 @@ class QuizList extends Component {
   }
 
   render() {
-    let quizzes = <Spinner />;
+    let quizzes = (
+      <div className={classes.Loading}>
+        <Spinner />
+        <section>Loading quizzes...</section>
+      </div>
+    );
     const dropDown = this.state.categories.map((category) => {
       return (
         <Dropdown.Item
@@ -119,11 +124,11 @@ class QuizList extends Component {
             <FormControl
               onChange={(event) => {
                 const input = event.target.value.toLowerCase();
-                const quizzesCopy = [...this.props.quizzes];
+                const quizzesCopy = [...this.props.quizzesCopy];
                 const newQuizzes = quizzesCopy.filter((quiz) =>
                   quiz.name.toLowerCase().includes(input)
                 );
-                this.props.onSearch(newQuizzes);
+                this.props.onSearchBar(newQuizzes);
               }}
               placeholder="Search quiz..."
               aria-describedby="basic-addon1"
@@ -178,6 +183,7 @@ class QuizList extends Component {
 const mapStateToProps = (state) => {
   return {
     quizzes: state.quizzes.quizzes,
+    quizzesCopy: state.quizzes.quizzesCopy,
     quizzesDisplayed: state.quizzes.quizzesDisplayed,
     loading: state.quizzes.loading,
     error: state.quizzes.error,
@@ -189,6 +195,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     //action must be executed ()!
     onSearch: (quizzes) => dispatch(actions.quizFilter(quizzes)),
+    onSearchBar: (quizzes) => dispatch(actions.quizSearch(quizzes)),
     onStartQuiz: (quiz) => dispatch(actions.quizStart(quiz)),
     onFetchQuizzes: () => dispatch(actions.fetchQuizzes()),
   };
