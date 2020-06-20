@@ -1,6 +1,6 @@
 export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
 
-export { initUserDetails } from "./account";
+// export { initUserDetails } from "./account";
 
 export {
   fetchQuizzes,
@@ -9,3 +9,6 @@ export {
   quizFilter,
   quizSearch,
 } from "./quizzes";
+
+export { signUp,
+         setSignUpRedirectPath} from "./signup";
