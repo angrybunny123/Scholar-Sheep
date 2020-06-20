@@ -32,29 +32,14 @@ class Account extends Component {
         return (
             <div>
             <Container fluid> 
-                <Row>
-                    <Col>
+                <Row className={classes.topcontainer}>
+                    <Col md={4}>
                         <Profile
                             displaypic={Kenneth}
                             name="Scholarsheep"
                             email="Test@Test.com"
                             level= "100"
                         />
-                    </Col>
-                    <Col>
-                        <QuickLinks
-                            clicked={this.createQuizLink}
-                            LinkName=" Create A Quiz "/>
-                        <QuickLinks
-                            clicked={this.quizListLink}
-                            LinkName=" Quiz List "/>
-                    </Col>
-                </Row>
-            </Container>
-            <Container fluid className={classes.bottomcontainer}>
-                <Row>
-                    <Col>
-                        <History />
                     </Col>
                     <Col>
                         <Row>
@@ -76,7 +61,28 @@ class Account extends Component {
                                     awardname="Handsome Award"
                                     awarddesc="For being Handsome"/>
                             </Col>
+                            <Col>
+                                <Award 
+                                    awardimage={Kenneth}
+                                    awardname="Handsome Award"
+                                    awarddesc="For being Handsome"/>
+                            </Col>
                         </Row>
+                    </Col>
+                </Row>
+            </Container>
+            <Container fluid className={classes.bottomcontainer}>
+                <Row>
+                    <Col>
+                        <History />
+                    </Col>
+                    <Col>
+                        <QuickLinks
+                            clicked={this.createQuizLink}
+                            LinkName=" Create A Quiz "/>
+                        <QuickLinks
+                            clicked={this.quizListLink}
+                            LinkName=" Quiz List "/>
                     </Col>
                 </Row>
             </Container>

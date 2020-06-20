@@ -8,6 +8,7 @@ import NavBarNoAuth from "./components/NavBar/NavBarNoAuth";
 import Homepage from "./containers/Homepage/Homepage";
 import Auth from "./containers/Auth/Auth";
 import Account from "./containers/Account/Account";
+import About from "./containers/About/About";
 import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
 import Quizzes from "./containers/Quizzes/Quizzes";
@@ -33,7 +34,7 @@ class App extends Component {
           <Route path="/account" component={Account} />
           <Route path="/quizzes" component={Quizzes} />
           <Route path="/createQuiz" component={CreateQuiz} />
-          <Route path="/about" />
+          <Route path="/about" component={About}/>
           <Route path="/auth" component={Auth} />
           <Route path="/quizStart" component={QuizStart} />
           <Route path="/logout" component={Logout} />
