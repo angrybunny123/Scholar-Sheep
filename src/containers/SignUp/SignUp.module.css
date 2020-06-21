@@ -9,3 +9,8 @@
 .SubmitButton {
     padding: 20px 0px;
 }
+
+.ErrorMessage {
+    text-align: center;
+    color: red;
+}

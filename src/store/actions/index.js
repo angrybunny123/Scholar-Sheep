@@ -10,5 +10,4 @@ export {
   quizSearch,
 } from "./quizzes";
 
-export { signUp,
-         setSignUpRedirectPath} from "./signup";
+export { signUp, setSignUpRedirectPath} from "./signup";

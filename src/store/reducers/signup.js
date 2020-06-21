@@ -4,13 +4,15 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    signUpRedirectPath: '/'
+    loading: false,
+    path: '/',
 };
 
 const signUpStart = ( state, action ) => {
     return {
         ...state,
         error: null, 
+        loading: true,
     };
 };
 
@@ -20,6 +22,7 @@ const signUpSuccess = ( state, action ) => {
         token: action.idToken,
         userId: action.userId,
         error: null,
+        loading: false,
     };
 }
 
@@ -27,8 +30,16 @@ const signUpFail = ( state, action ) => {
     return {
         ...state,
         error: action.error,
+        loading: false,
     };
 };
+
+const setSignUpRedirectPath = (state, action) => {
+    return {
+        ...state,
+        signUpRedirectPath: action.path,
+    }
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -38,6 +49,8 @@ const reducer = (state = initialState, action) => {
             return signUpSuccess(state, action);
         case actionTypes.SIGN_UP_FAIL:
             return signUpFail(state, action);
+        case actionTypes.SET_SIGNUP_REDIRECT_PATH:
+            return setSignUpRedirectPath(state, action);
         default:
             return state;
     }
