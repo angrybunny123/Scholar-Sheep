@@ -16,7 +16,7 @@ import FormControl from "react-bootstrap/FormControl";
 class QuizList extends Component {
   state = {
     booleanArray: [],
-    categories: ["Animals", "Math", "Sports", "Emotions"],
+    categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
   };
 
   handleClose = (index) => {

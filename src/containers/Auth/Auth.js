@@ -11,17 +11,17 @@ import * as actions from "../../store/actions/index";
 
 class Auth extends Component {
   state = {
-    isSignup: true,
+    isSignup: false,
     email: "",
     password: "",
   };
 
-  switchAuthModeHandler = () => {
-    //switch the values
-    this.setState((prevState) => {
-      return { isSignup: !prevState.isSignup };
-    });
-  };
+  // switchAuthModeHandler = () => {
+  //   //switch the values
+  //   this.setState((prevState) => {
+  //     return { isSignup: !prevState.isSignup };
+  //   });
+  // };
 
   emailChangedHandler = (event) => {
     console.log(event.target.value);
@@ -99,7 +99,7 @@ class Auth extends Component {
               <button
                 type="button"
                 className={classes.secondaryButton}
-                onClick={this.switchAuthModeHandler}
+                onClick={() => this.props.history.push("/signup")}
               >
                 {this.state.isSignup
                   ? "Already have an account? Sign in instead!"
