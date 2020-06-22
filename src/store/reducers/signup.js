@@ -37,7 +37,7 @@ const signUpFail = ( state, action ) => {
 const setSignUpRedirectPath = (state, action) => {
     return {
         ...state,
-        signUpRedirectPath: action.path,
+        path: action.path,
     }
 }
 

@@ -49,12 +49,7 @@ export const auth = (email, password, isSignup) => {
       returnSecureToken: true,
     };
     //they are different. One is signup new user, one is sign in with password!
-    let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDbEAqq9PukE2pnIfmfiXe7kGGD5X1aYCs";
-    if (!isSignup) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDbEAqq9PukE2pnIfmfiXe7kGGD5X1aYCs";
-    }
+    let url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDbEAqq9PukE2pnIfmfiXe7kGGD5X1aYCs";
     axios
       .post(url, authData)
       .then((response) => {

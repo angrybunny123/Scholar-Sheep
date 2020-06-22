@@ -50,6 +50,7 @@ class SignUp extends Component {
             this.state.email,
             this.state.password,
         );
+        this.props.onSetSignUpRedirectPath();
     };
 
     render () {
@@ -62,13 +63,8 @@ class SignUp extends Component {
                     : this.props.error.message === "INVALID_EMAIL"
                     ? "Please enter a valid email address!"
                     : this.props.error.message ===
-                    "WEAK_PASSWORD : Password should be at least 6 characters"
-                    ? "Password should be at least 6 characters!"
-                    : this.props.error.message === "INVALID_PASSWORD"
-                    ? "Invalid Password!"
-                    : this.props.error.message === "EMAIL_NOT_FOUND"
-                    ? "Email not found!"
-                    : this.props.error.message}
+                    "WEAK_PASSWORD : Password should be at least 6 characters, Password should be at least 6 characters!" }
+                   
                 </p>
             );
         }
@@ -141,7 +137,7 @@ class SignUp extends Component {
 
         let signUpRedirect = null;
         if (this.props.isSignUp) {
-            signUpRedirect = <Redirect to={this.props.onSetAuthRedirectPath} />;
+            signUpRedirect = <Redirect to={this.props.signUpRedirectPath} />;
         }
 
         return (
@@ -158,7 +154,7 @@ const mapStateToProps = state => {
         loading: state.signup.loading,
         error: state.signup.error,
         isSignUp: state.signup.token !== null,
-        signUpRedirectPath: state.signup.signUpRedirectPath,
+        signUpRedirectPath: state.signup.path,
     };
 };
 
@@ -166,7 +162,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onSignUp: (firstname, lastname, username, email, password) => 
             dispatch(actions.signUp(firstname, lastname, username, email, password)),
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
+        onSetSignUpRedirectPath: () => dispatch(actions.setSignUpRedirectPath("/signupcomplete")),
     };
 };
 
