@@ -1,0 +1,10 @@
+.Card {
+  width: 110%;
+  margin: 0.6rem 0;
+  padding: 0.1rem;
+  text-align: center;
+}
+
+.Card:hover {
+  border: 3px solid #627dc2;
+}

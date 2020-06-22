@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Form} from 'react-bootstrap';
+import { Container, Row, Col, Form, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import classes from './SignUp.module.css';
 import * as actions from '../../store/actions/index';
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 class SignUp extends Component {
     state = {
@@ -15,23 +16,28 @@ class SignUp extends Component {
         password: "",
       };
 
-    firstNameChangedHandler = (event) => {
+    firstNameChangedHandler = (event, inputIdentifier) => {
+        console.log(event.target.value);
         this.setState({firstname: event.target.value});
     };
 
     lastNameChangedHandler = (event) => {
+        console.log(event.target.value);
         this.setState({lastname: event.target.value});
     };
 
     userNameChangedHandler = (event) => {
+        console.log(event.target.value);
         this.setState({username: event.target.value});
     };
 
     emailChangedHandler = (event) => {
+        console.log(event.target.value);
         this.setState({email: event.target.value});
     };
 
     passwordChangedHandler = (event) => {
+        console.log(event.target.value);
         this.setState({ password: event.target.value});
     };
 
@@ -44,6 +50,7 @@ class SignUp extends Component {
             this.state.email,
             this.state.password,
         );
+        this.props.onSetSignUpRedirectPath();
     };
 
     render () {
@@ -56,43 +63,34 @@ class SignUp extends Component {
                     : this.props.error.message === "INVALID_EMAIL"
                     ? "Please enter a valid email address!"
                     : this.props.error.message ===
-                    "WEAK_PASSWORD : Password should be at least 6 characters"
-                    ? "Password should be at least 6 characters!"
-                    : this.props.error.message === "INVALID_PASSWORD"
-                    ? "Invalid Password!"
-                    : this.props.error.message === "EMAIL_NOT_FOUND"
-                    ? "Email not found!"
-                    : this.props.error.message}
+                    "WEAK_PASSWORD : Password should be at least 6 characters, Password should be at least 6 characters!" }
+                   
                 </p>
             );
         }
 
-        let signUpRedirect = null;
-        if (this.props.isSignUp) {
-            signUpRedirect = <Redirect to={this.props.onSetSignUpRedirectPath} />;
-        }
-
-        return (
+        let form = (
             <div style={{minHeight: "700px"}}>
-                {signUpRedirect}
-                <p>{errorMessage}</p>
+                <p className={classes.ErrorMessage}>{errorMessage}</p>
                 <Form className={classes.FormStyle}>
-                    <Form.Group controlId="formBasicName" className={classes.InputStyle}>
-                        <Row>
-                            <Col>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId="formBasicFirstName" className={classes.InputStyle}>
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control 
                                     placeholder="Enter First Name"
                                     onChange={(event) => this.firstNameChangedHandler(event)} />
-                            </Col>
-                            <Col>
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId="formBasicLastName" className={classes.InputStyle}>
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control 
                                     placeholder="Enter Last Name"
                                     onChange={(event) => this.lastNameChangedHandler(event)} />
-                            </Col>
-                        </Row>
-                    </Form.Group>
+                            </Form.Group>        
+                        </Col>
+                    </Row>
                     <Form.Group controlId ="formBasicUsername" className={classes.InputStyle}>
                         <Form.Label>Username</Form.Label>
                         <Form.Control 
@@ -115,11 +113,37 @@ class SignUp extends Component {
                     </Form.Group>
                     <Form.Group controlId="formBasicButton" className={classes.SubmitButton}>
                         <Col sm={4} >
-                            <button
-                                onClick={this.submitHandler}>Create!</button>
+                            <Button variant="outline-success"
+                                onClick={this.submitHandler}>Create!</Button>
                         </Col>
                     </Form.Group>
                 </Form>
+            </div>
+        );
+        if (this.props.loading) {
+            form = (
+              <div
+                style={{
+                  margin: "5rem 2rem 2rem 2rem",
+                  textAlign: "center",
+                  fontSize: "1.3rem",
+                }}
+              >
+                <Spinner/>
+                Verifying data...
+              </div>
+            );
+        }
+
+        let signUpRedirect = null;
+        if (this.props.isSignUp) {
+            signUpRedirect = <Redirect to={this.props.signUpRedirectPath} />;
+        }
+
+        return (
+            <div style={{minHeight: "700px"}}>
+                {signUpRedirect}
+                {form}
             </div>
         );
     }
@@ -127,9 +151,10 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
     return {
+        loading: state.signup.loading,
         error: state.signup.error,
-        isSignedUp: state.signup.token !== null,
-        signUpRedirectPath: state.signup.signUpRedirectPath,
+        isSignUp: state.signup.token !== null,
+        signUpRedirectPath: state.signup.path,
     };
 };
 
@@ -137,7 +162,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onSignUp: (firstname, lastname, username, email, password) => 
             dispatch(actions.signUp(firstname, lastname, username, email, password)),
-        onSetSignUpRedirectPath: () => dispatch(actions.setSignUpRedirectPath("/"))
+        onSetSignUpRedirectPath: () => dispatch(actions.setSignUpRedirectPath("/signupcomplete")),
     };
 };
 

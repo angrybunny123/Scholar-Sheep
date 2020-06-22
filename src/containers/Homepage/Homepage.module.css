@@ -1,3 +1,13 @@
 .Homepage {
   font-size: 20px;
 }
+
+.BottomRow {
+  margin: 40px 0px 0px 0px;
+}
+
+.ImageStyle {
+  width: 20rem;
+  /* border: 1px solid black; */
+  margin-top: 40px;
+}

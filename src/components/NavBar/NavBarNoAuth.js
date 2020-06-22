@@ -48,12 +48,6 @@ const navBarNoAuth = () => {
               Login
             </Link>
           </Nav.Link>
-          <Nav.Link>
-            <Link className={classes.NavBarLink} to="/signup">
-              {/* <img src={aboutButton} alt="aboutButton" /> */}
-              SignUp
-            </Link>
-          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

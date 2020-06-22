@@ -1,39 +1,47 @@
-// import * as actionTypes from "./actionTypes";
-// import axios from "axios";
+import * as actionTypes from "./actionTypes";
+import axios from "axios";
 
+export const fetchUserDataSuccess = (userData) => {
+  console.log("user fetch success");
+  return {
+    type: actionTypes.FETCH_USER_DATA_SUCCESS,
+    userData: userData[0],
+  };
+};
 
-// export const setUserDetails = (details) => {
-//     return {
-//         type: actionTypes.SET_USER_DETAILS
-//     }
-// }
+export const fetchUserDataFail = (error) => {
+  return {
+    type: actionTypes.FETCH_USER_DATA_FAIL,
+    error: error,
+  };
+};
 
-// export const setUserDetailsFail = () => {
-//     return {
-//         type: actionTypes.SET_USER_DETAILS_FAIL
-//     }
-// }
+export const fetchUserDataStart = () => {
+  return {
+    type: actionTypes.FETCH_USER_DATA_START,
+  };
+};
 
-// export const initUserDetails = () => {
-//     return (dispatch) => {
-//         axios.get("")
-//              .then( response => {
-//                  dispatch(setUserDetails(response.data));
-//              })
-//              .catch( error => {
-//                  dispatch(setUserDetailsFail());
-//              });
-//     };
-// };
-
-// export const changeAward1 = (award) => {
-
-// }
-
-// export const changeAward2 = (award) => {
-
-// }
-
-// export const changeAward3 = (award) => {
-
-// }
+export const fetchUserData = (token, userId) => {
+  console.log("fetch user data called");
+  return (dispatch) => {
+    dispatch(fetchUserDataStart());
+    const queryParams =
+      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    axios
+      .get("https://scholar-sheep.firebaseio.com/userdata.json" + queryParams)
+      .then((response) => {
+        const fetchedData = [];
+        for (let key in response.data) {
+          fetchedData.push({
+            ...response.data[key],
+            id: key,
+          });
+        }
+        dispatch(fetchUserDataSuccess(fetchedData));
+      })
+      .catch((error) => {
+        dispatch(fetchUserDataFail(error));
+      });
+  };
+};

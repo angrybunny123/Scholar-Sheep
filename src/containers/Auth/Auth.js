@@ -16,12 +16,10 @@ class Auth extends Component {
     password: "",
   };
 
-  // switchAuthModeHandler = () => {
-  //   //switch the values
-  //   this.setState((prevState) => {
-  //     return { isSignup: !prevState.isSignup };
-  //   });
-  // };
+  onCreateAccount = () => {
+    //switch the values
+    this.props.history.push("/signup");
+  };
 
   emailChangedHandler = (event) => {
     console.log(event.target.value);
@@ -50,14 +48,7 @@ class Auth extends Component {
       errorMessage = (
         //the message property is from firebase!
         <p>
-          {this.props.error.message === "EMAIL_EXISTS"
-            ? "The email address already exists!"
-            : this.props.error.message === "INVALID_EMAIL"
-            ? "Please enter a valid email address!"
-            : this.props.error.message ===
-              "WEAK_PASSWORD : Password should be at least 6 characters"
-            ? "Password should be at least 6 characters!"
-            : this.props.error.message === "INVALID_PASSWORD"
+          {this.props.error.message === "INVALID_PASSWORD"
             ? "Invalid Password!"
             : this.props.error.message === "EMAIL_NOT_FOUND"
             ? "Email not found!"
@@ -68,9 +59,7 @@ class Auth extends Component {
     let form = (
       <div className={classes.Auth}>
         <p style={{ textAlign: "center", margin: "2rem", fontSize: "2rem" }}>
-          {this.state.isSignup
-            ? "Sign up to be a Scholar Sheep today!"
-            : "Login with your email and password!"}
+          Login with your email and password!
         </p>
         <p style={{ textAlign: "center", color: "red" }}>{errorMessage}</p>
         <Form style={{ margin: "2rem" }}>
@@ -93,17 +82,15 @@ class Auth extends Component {
           </Form.Group>
           <div style={{ textAlign: "center" }}>
             <Button variant="outline-success" onClick={this.submitHandler}>
-              {this.state.isSignup ? "Create Account" : "Login"}
+              Login
             </Button>
             <p>
               <button
                 type="button"
                 className={classes.secondaryButton}
-                onClick={() => this.props.history.push("/signup")}
+                onClick={this.onCreateAccount}
               >
-                {this.state.isSignup
-                  ? "Already have an account? Sign in instead!"
-                  : "Don't have an account? Create one now!"}
+                Don't have an account? Create one now!
               </button>
             </p>
           </div>
