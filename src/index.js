@@ -12,10 +12,12 @@ import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
 import signupReducer from "./store/reducers/signup";
 import quizzesReducer from "./store/reducers/quizzes";
+import accountReducer from "./store/reducers/account";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   signup: signupReducer,
+  account: accountReducer,
   quizzes: quizzesReducer,
 });
 

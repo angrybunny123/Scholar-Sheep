@@ -5,14 +5,17 @@ import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 import Kenneth from "../../../assets/kenneth.jpg";
+import classes from "./DailyQuiz.module.css";
 
 const dailyQuiz = () => {
   return (
     <div>
+      <h4 className={classes.Title}>Try a Quiz now!</h4>
       <Card
         style={{
-          width: "auto",
-          margin: "2rem",
+          width: "100%",
+          margin: "auto",
+          minHeight: "500px",
           height: "auto",
           // border: "5px solid #627dc2",
           borderRadius: "15px",
@@ -34,36 +37,6 @@ const dailyQuiz = () => {
           <Button variant="outline-success">Attempt Quiz</Button>
         </Card.Body>
       </Card>
-      <p style={{ textAlign: "center", fontSize: "1.5rem" }}>
-        Daily Quiz Rankings:
-      </p>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Scholar Sheep</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>10/10</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Kenneth</td>
-            <td>8/10</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            {/* <td colSpan="2">Penn Han</td> */}
-            <td>Penn Han</td>
-            <td>7/10</td>
-          </tr>
-        </tbody>
-      </Table>
     </div>
   );
 };
