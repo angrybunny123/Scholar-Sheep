@@ -22,7 +22,6 @@ class Homepage extends Component {
   render() {
     let userHeader = null;
     if (this.props.token !== null) {
-      console.log("userdata", this.props.userData);
       userHeader = <h1>Welcome Back, {this.props.userData.username}</h1>;
     }
 

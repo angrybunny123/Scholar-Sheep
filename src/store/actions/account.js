@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 export const fetchUserDataSuccess = (userData) => {
-  console.log("user fetch success");
+  // console.log(userData);
   return {
     type: actionTypes.FETCH_USER_DATA_SUCCESS,
     userData: userData[0],
@@ -23,7 +23,6 @@ export const fetchUserDataStart = () => {
 };
 
 export const fetchUserData = (token, userId) => {
-  console.log("fetch user data called");
   return (dispatch) => {
     dispatch(fetchUserDataStart());
     const queryParams =
@@ -43,5 +42,91 @@ export const fetchUserData = (token, userId) => {
       .catch((error) => {
         dispatch(fetchUserDataFail(error));
       });
+  };
+};
+
+export const fetchUserQuizzes = (token, userId) => {
+  console.log("fetch user quizzes called");
+  const queryParams =
+    "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+  return (dispatch) => {
+    dispatch(fetchUserQuizzesStart());
+    axios
+      .get("https://scholar-sheep.firebaseio.com/quizzes.json" + queryParams)
+      .then((response) => {
+        const fetchedData = [];
+        for (let key in response.data) {
+          fetchedData.push({
+            ...response.data[key],
+            id: key,
+          });
+        }
+        console.log("fetched Data", fetchedData);
+        dispatch(fetchUserQuizzesSuccess(fetchedData));
+      })
+      .catch((error) => {
+        dispatch(fetchUserQuizzesFail(error));
+      });
+  };
+};
+
+export const updateUserDataSuccess = (userData) => {
+  // console.log(userData);
+  return {
+    type: actionTypes.UPDATE_USER_DATA_SUCCESS,
+    userData: userData,
+  };
+};
+
+export const updateUserDataFail = (error) => {
+  return {
+    type: actionTypes.UPDATE_USER_DATA_FAIL,
+    error: error,
+  };
+};
+
+export const updateUserDataStart = () => {
+  return {
+    type: actionTypes.UPDATE_USER_DATA_START,
+  };
+};
+
+export const updateUserData = (userData) => {
+  console.log("update user data called");
+  return (dispatch) => {
+    dispatch(updateUserDataStart());
+    axios
+      .put(
+        "https://scholar-sheep.firebaseio.com/userdata/" +
+          userData.id +
+          ".json",
+        userData
+      )
+      .then((response) => {
+        dispatch(updateUserDataSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(updateUserDataFail(error));
+      });
+  };
+};
+
+export const fetchUserQuizzesSuccess = (quizzes) => {
+  return {
+    type: actionTypes.FETCH_USER_QUIZZES_SUCCESS,
+    quizzes: quizzes,
+  };
+};
+
+export const fetchUserQuizzesFail = (error) => {
+  return {
+    type: actionTypes.FETCH_USER_QUIZZES_FAIL,
+    error: error,
+  };
+};
+
+export const fetchUserQuizzesStart = () => {
+  return {
+    type: actionTypes.FETCH_USER_QUIZZES_START,
   };
 };

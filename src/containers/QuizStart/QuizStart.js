@@ -27,6 +27,10 @@ class QuizStart extends Component {
     seconds: 20,
   };
   componentDidMount() {
+    this.props.onFetchUserData(
+      localStorage.getItem("token"),
+      localStorage.getItem("userId")
+    );
     if (this.props.currentQuiz !== null) {
       const newQuestions = [...this.props.currentQuiz.questions];
       this.setState({
@@ -103,9 +107,29 @@ class QuizStart extends Component {
           ...this.props.currentQuiz,
           popularity: this.props.currentQuiz.popularity + 1,
         };
+        console.log("updatedQuiz", updatedQuiz);
         //THIS IS WHERE WE CAN DO ALOT OF THINGS!
         //WHEN A QUIZ IS SUBMITTED, A LOT OF STATES CAN BE UPDATED TOO!
         this.props.onSubmitQuiz(updatedQuiz, updatedQuiz.id);
+        const attemptedQuiz = {
+          category: updatedQuiz.category,
+          name: updatedQuiz.name,
+          score: marks,
+          questionNumber: updatedQuiz.questions.length,
+        };
+        let newData = [];
+        if (this.props.userData.quizHistory) {
+          newData = {
+            ...this.props.userData,
+            quizHistory: this.props.userData.quizHistory.concat(attemptedQuiz),
+          };
+        } else {
+          newData = {
+            ...this.props.userData,
+            quizHistory: [attemptedQuiz],
+          };
+        }
+        this.props.onUpdateUserData(newData);
       }
     );
   };
@@ -265,12 +289,16 @@ const mapStateToProps = (state) => {
     currentQuiz: state.quizzes.currentQuiz,
     loading: state.quizzes.loading,
     error: state.quizzes.error,
+    userData: state.account.userData,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onFetchUserData: (token, userId) =>
+      dispatch(actions.fetchUserData(token, userId)),
     onSubmitQuiz: (quiz, id) => dispatch(actions.submitQuiz(quiz, id)),
+    onUpdateUserData: (userData) => dispatch(actions.updateUserData(userData)),
   };
 };
 

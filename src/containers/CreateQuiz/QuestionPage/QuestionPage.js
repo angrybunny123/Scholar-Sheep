@@ -71,7 +71,41 @@ class QuestionPage extends Component {
         </Button>
       </div>
     );
-    if (this.props.questionNumber === 5) {
+    if (this.props.questionNumber >= 5) {
+      buttons = (
+        <div>
+          <Button
+            variant="success"
+            className="float-right"
+            style={{ padding: "0.5rem 2rem", marginLeft: "0.5rem" }}
+            onClick={() => this.props.clickSubmit(this.state)}
+          >
+            Submit
+          </Button>
+          <Button
+            variant="secondary"
+            className="float-right"
+            style={{ padding: "0.5rem 2rem" }}
+            onClick={() =>
+              this.setState(
+                {
+                  question: "",
+                  option1: "",
+                  option2: "",
+                  option3: "",
+                  option4: "",
+                  answer: "",
+                },
+                this.props.clickNext(this.state)
+              )
+            }
+          >
+            Next
+          </Button>
+        </div>
+      );
+    }
+    if (this.props.questionNumber === 10) {
       buttons = (
         <Button
           variant="success"

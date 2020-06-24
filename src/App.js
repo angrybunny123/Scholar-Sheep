@@ -36,7 +36,7 @@ class App extends Component {
           <Route path="/account" component={Account} />
           <Route path="/quizzes" component={Quizzes} />
           <Route path="/createQuiz" component={CreateQuiz} />
-          <Route path="/about" component={About}/>
+          <Route path="/about" component={About} />
           <Route path="/auth" component={Auth} />
           <Route path="/quizStart" component={QuizStart} />
           <Route path="/logout" component={Logout} />

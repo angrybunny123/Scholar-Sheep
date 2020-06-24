@@ -18,18 +18,17 @@ class Auth extends Component {
 
   onCreateAccount = () => {
     //switch the values
+    this.props.resetSignUp();
     this.props.history.push("/signup");
   };
 
   emailChangedHandler = (event) => {
-    console.log(event.target.value);
     this.setState({
       email: event.target.value,
     });
   };
 
   passwordChangedHandler = (event) => {
-    console.log(event.target.value);
     this.setState({ password: event.target.value });
   };
 
@@ -139,6 +138,7 @@ const mapDispatchToProps = (dispatch) => {
     onAuth: (email, password, isSignup) =>
       dispatch(actions.auth(email, password, isSignup)),
     onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath("/")),
+    resetSignUp: () => dispatch(actions.resetSignUp()),
   };
 };
 

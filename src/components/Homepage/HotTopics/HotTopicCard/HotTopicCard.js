@@ -7,7 +7,7 @@ const hotTopicCard = (props) => {
     <Card className={classes.Card}>
       <Card.Img variant="top" src={props.image} />
       <Card.Body>
-        <Card.Title>{props.topic}</Card.Title>
+        <Card.Title style={{ fontSize: "1rem" }}>{props.topic}</Card.Title>
       </Card.Body>
     </Card>
   );

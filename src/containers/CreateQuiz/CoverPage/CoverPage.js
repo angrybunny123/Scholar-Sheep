@@ -10,7 +10,7 @@ class CoverPage extends Component {
     name: "",
     category: "",
     description: "",
-    // file
+    categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
   };
   quizNameChangedHandler = (event) => {
     this.setState({
@@ -28,6 +28,9 @@ class CoverPage extends Component {
     });
   };
   render() {
+    const dropDown = this.state.categories.map((category) => {
+      return <option>{category}</option>;
+    });
     return (
       <div className={classes.coverPage}>
         <p style={{ textAlign: "center", margin: "2rem", fontSize: "1.8rem" }}>
@@ -50,14 +53,7 @@ class CoverPage extends Component {
               value={this.state.category}
               onChange={(event) => this.categoryChangedHandler(event)}
             >
-              <option>Animals</option>
-              <option>Science</option>
-              <option>Cooking</option>
-              <option>Math</option>
-              <option>Sports</option>
-              <option>SuperHeroes</option>
-              <option>Astronomy</option>
-              <option>Emotions</option>
+              {dropDown}
             </Form.Control>
           </Form.Group>
 

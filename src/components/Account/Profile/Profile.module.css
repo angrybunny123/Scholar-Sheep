@@ -1,15 +1,33 @@
+.Profile {
+  margin-top: 2rem;
+}
+
 .displaypic {
-    width: 250px;
-    height: 250px;
-    margin: 20px 20px;
-    border: 3px solid black;
+  width: 80%;
+  border: 3px solid black;
 }
 
-.restrow {
-    padding-left: 25px;
+.buttons {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  color: #069;
+  cursor: pointer;
+  outline: none;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
 }
 
-.btmrow {
-    padding-left: 25px;
-    padding-bottom: 20px;
+.buttons:hover {
+  text-decoration: underline;
+}
+
+.profileDescription {
+  padding-left: 0.5rem;
+}
+
+.username {
+  padding-bottom: 0.5rem;
+  font-size: 20px;
+  font-weight: 700;
 }
