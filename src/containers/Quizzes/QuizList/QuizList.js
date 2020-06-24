@@ -4,7 +4,6 @@ import * as actions from "../../../store/actions/index";
 import { connect } from "react-redux";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./QuizList.module.css";
-import ReactPaginate from 'react-paginate';
 
 import QuizModal from "../../../components/UI/Modal/Modal";
 import Table from "react-bootstrap/Table";
