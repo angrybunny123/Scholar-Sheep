@@ -89,19 +89,9 @@ class QuizList extends Component {
 
     const indexofLastQuiz = currentPage * quizzesPerPage;
     const indexofFirstQuiz = indexofLastQuiz - quizzesPerPage;
-    const currentQuizzes = this.props.quizzes.slice(indexofFirstQuiz, indexofLastQuiz);
+    const currentQuizzes = this.props.quizzesCopy.slice(indexofFirstQuiz, indexofLastQuiz);
 
-    let pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(this.props.quizzes.length / quizzesPerPage); i++) {
-      pageNumbers.push(
-        <Pagination.Item 
-          key={i} 
-          active={i === this.state.currentPage} 
-          id={i} 
-          onClick = {this.handlePageClick}>
-          {i}
-        </Pagination.Item>)
-    }
+    
 
     if (this.props.error !== "") {
       quizzes = <div className={classes.Error}>{this.props.error} :(</div>;
@@ -207,12 +197,25 @@ class QuizList extends Component {
               ))}
             </tbody>
           </Table>
-          <Pagination>{pageNumbers}</Pagination>
+          
         </div>
       );
     }
+    
+    let pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(this.props.quizzesCopy.length / quizzesPerPage); i++) {
+      pageNumbers.push(
+        <Pagination.Item 
+          key={i} 
+          active={i === this.state.currentPage} 
+          id={i} 
+          onClick = {this.handlePageClick}>
+          {i}
+        </Pagination.Item>)
+    }
     return <div>
             {quizzes}
+            <Pagination>{pageNumbers}</Pagination>
             </div>;
   }
 }
