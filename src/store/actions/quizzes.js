@@ -48,7 +48,8 @@ export const fetchQuizzes = () => {
             id: key,
           });
         }
-        dispatch(fetchQuizzesSuccess(fetchedQuizzes));
+        
+        dispatch(fetchQuizzesSuccess(fetchedQuizzes, ));
       })
       .catch((err) => {
         console.log(err);

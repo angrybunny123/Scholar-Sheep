@@ -4,6 +4,7 @@ import * as actions from "../../../store/actions/index";
 import { connect } from "react-redux";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import classes from "./QuizList.module.css";
+import ReactPaginate from 'react-paginate';
 
 import QuizModal from "../../../components/UI/Modal/Modal";
 import Table from "react-bootstrap/Table";
@@ -12,12 +13,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import FormControl from "react-bootstrap/FormControl";
+import Pagination from 'react-bootstrap/Pagination';
 
 class QuizList extends Component {
-  state = {
+  constructor (props) {
+    super(props);
+    this.state = {
     booleanArray: [],
     categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
-  };
+    currentPage: 1,
+    quizzesPerPage: 10,
+    };
+  }
 
   handleClose = (index) => {
     const newArr = [...this.state.booleanArray];
@@ -35,8 +42,14 @@ class QuizList extends Component {
     });
   };
 
+  handlePageClick = (event) => {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
+
   componentDidMount() {
-    this.props.onFetchQuizzes(this.props.token, this.props.userId);
+    this.props.onFetchQuizzes();
     const len = this.props.quizzes.length;
     const boolArr = new Array(len);
     for (var i = 0; i < len; ++i) {
@@ -48,12 +61,14 @@ class QuizList extends Component {
   }
 
   render() {
+
     let quizzes = (
       <div className={classes.Loading}>
         <Spinner />
         <section>Loading quizzes...</section>
       </div>
     );
+
     const dropDown = this.state.categories.map((category) => {
       return (
         <Dropdown.Item
@@ -69,6 +84,25 @@ class QuizList extends Component {
         </Dropdown.Item>
       );
     });
+
+    const {currentPage, quizzesPerPage } = this.state;
+
+    const indexofLastQuiz = currentPage * quizzesPerPage;
+    const indexofFirstQuiz = indexofLastQuiz - quizzesPerPage;
+    const currentQuizzes = this.props.quizzes.slice(indexofFirstQuiz, indexofLastQuiz);
+
+    let pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(this.props.quizzes.length / quizzesPerPage); i++) {
+      pageNumbers.push(
+        <Pagination.Item 
+          key={i} 
+          active={i === this.state.currentPage} 
+          id={i} 
+          onClick = {this.handlePageClick}>
+          {i}
+        </Pagination.Item>)
+    }
+
     if (this.props.error !== "") {
       quizzes = <div className={classes.Error}>{this.props.error} :(</div>;
     } else if (!this.props.loading) {
@@ -146,7 +180,7 @@ class QuizList extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.quizzesDisplayed.map((quiz, index) => (
+              {currentQuizzes.map((quiz, index) => (
                 <tr>
                   <td>{index + 1}</td>
                   <td>{quiz.category}</td>
@@ -173,10 +207,13 @@ class QuizList extends Component {
               ))}
             </tbody>
           </Table>
+          <Pagination>{pageNumbers}</Pagination>
         </div>
       );
     }
-    return <div>{quizzes}</div>;
+    return <div>
+            {quizzes}
+            </div>;
   }
 }
 
@@ -187,7 +224,6 @@ const mapStateToProps = (state) => {
     quizzesDisplayed: state.quizzes.quizzesDisplayed,
     loading: state.quizzes.loading,
     error: state.quizzes.error,
-    currentQuiz: state.quizzes.currentQuiz,
   };
 };
 
@@ -197,7 +233,7 @@ const mapDispatchToProps = (dispatch) => {
     onSearch: (quizzes) => dispatch(actions.quizFilter(quizzes)),
     onSearchBar: (quizzes) => dispatch(actions.quizSearch(quizzes)),
     onStartQuiz: (quiz) => dispatch(actions.quizStart(quiz)),
-    onFetchQuizzes: () => dispatch(actions.fetchQuizzes()),
+    onFetchQuizzes: (pageOffSet, perPage) => dispatch(actions.fetchQuizzes(pageOffSet, perPage)),
   };
 };
 

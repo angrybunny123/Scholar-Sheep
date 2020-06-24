@@ -7,6 +7,7 @@ const initialState = {
   loading: false,
   error: "",
   currentQuiz: null,
+  pageCount: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +36,7 @@ const reducer = (state = initialState, action) => {
         quizzesDisplayed: action.quizzes,
         error: "",
         loading: false,
+        pageCount: action.pageCount,
       };
     case actionTypes.FETCH_QUIZZES_FAIL:
       return {
