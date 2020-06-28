@@ -147,7 +147,7 @@ class QuizList extends Component {
             <FormControl
               onChange={(event) => {
                 const input = event.target.value.toLowerCase();
-                const quizzesCopy = [...this.props.quizzesCopy];
+                const quizzesCopy = [...this.props.quizzes];
                 const newQuizzes = quizzesCopy.filter((quiz) =>
                   quiz.name.toLowerCase().includes(input)
                 );
