@@ -4,6 +4,7 @@ import classes from "./Questions.module.css";
 
 class Questions extends Component {
   render() {
+    const ans = this.props.answer;
     return (
       <div>
         <div className={classes.QuestionContainer}>
@@ -15,7 +16,7 @@ class Questions extends Component {
           />
         </div>
 
-        <div className={classes.OptionContainer}>
+        <div className={ans === 1 ? classes.OCS : classes.OptionContainer}>
           <button onClick={() => this.props.answerChanged(1)}>
             <Form.Control
               value={this.props.option1}
@@ -25,7 +26,7 @@ class Questions extends Component {
             />
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 2 ? classes.OCS : classes.OptionContainer}>
           <button onClick={() => this.props.answerChanged(2)}>
             <Form.Control
               value={this.props.option2}
@@ -35,7 +36,7 @@ class Questions extends Component {
             />
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 3 ? classes.OCS : classes.OptionContainer}>
           <button onClick={() => this.props.answerChanged(3)}>
             <Form.Control
               value={this.props.option3}
@@ -45,7 +46,7 @@ class Questions extends Component {
             />
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 4 ? classes.OCS : classes.OptionContainer}>
           <button onClick={() => this.props.answerChanged(4)}>
             <Form.Control
               value={this.props.option4}

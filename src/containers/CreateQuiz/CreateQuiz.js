@@ -115,14 +115,10 @@ class CreateQuiz extends Component {
     quizSent: false,
     error: null,
     numberOfQuestions: 5,
-    author: "@" + this.props.username,
   };
 
   componentDidMount() {
-    this.props.onFetchUserData(
-      localStorage.getItem("token"),
-      localStorage.getItem("userId")
-    );
+    this.props.onFetchUserData(this.props.token, this.props.userId);
   }
 
   switchToQuestions = (data) => {
@@ -190,6 +186,8 @@ class CreateQuiz extends Component {
           ...this.state,
           userId: this.props.userId,
           date: new Date().getTime(),
+          dateShown: new Date().toString().substring(4, 15),
+          author: "@" + this.props.username,
         };
         delete quiz.loading;
         delete quiz.coverPage;

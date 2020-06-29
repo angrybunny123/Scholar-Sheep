@@ -17,7 +17,28 @@ const modal = (props) => {
           <Modal.Title>Title: {props.quizName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>{props.description}</div>
+          <h5>Quiz Description</h5>
+          <p>{props.description}</p>
+          <br />
+          <h5>Additional info</h5>
+          <p>
+            Author: <strong>{props.author}</strong>
+          </p>
+          <p>
+            Category: <strong>{props.category}</strong>
+          </p>
+          <p>
+            No. of times attempted: <strong>{props.popularity}</strong>
+          </p>
+          <p>
+            Date Created: <strong>{props.date}</strong>
+          </p>
+          <p>
+            Number of Questions: <strong>{props.numberOfQuestions}</strong>
+          </p>
+          <p>
+            Time Limit: <strong>{props.timeLimit}</strong>
+          </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>

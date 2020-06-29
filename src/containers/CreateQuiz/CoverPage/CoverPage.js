@@ -33,21 +33,29 @@ class CoverPage extends Component {
       numberOfQuestions: event.target.value,
     });
   };
-  submitHandler = () => {
-    if (this.state.name === "") {
-      alert("please fill up the Name input!");
-    } else if (this.state.description === "") {
-      alert("please fill up the Description input!");
-    } else if (
-      this.state.numberOfQuestions < 5 ||
-      this.state.numberOfQuestions > 10
-    ) {
-      alert("number of questions should be between 5-10!");
-    } else {
-      this.props.click(this.state);
-    }
-  };
+
   render() {
+    let button = (
+      <Button variant="success" disabled className="btn-block">
+        Next
+      </Button>
+    );
+    if (
+      this.state.name !== "" &&
+      this.state.description !== "" &&
+      this.state.numberOfQuestions >= 5 &&
+      this.state.numberOfQuestions <= 10
+    ) {
+      button = (
+        <Button
+          variant="success"
+          className="btn-block float-right"
+          onClick={() => this.props.click(this.state)}
+        >
+          Next
+        </Button>
+      );
+    }
     const dropDown = this.state.categories.map((category) => {
       return <option>{category}</option>;
     });
@@ -104,13 +112,7 @@ class CoverPage extends Component {
             />
           </Form.Group> */}
         </Form>
-        <Button
-          variant="success"
-          className="btn-block float-right"
-          onClick={this.submitHandler}
-        >
-          Next
-        </Button>
+        {button}
       </div>
     );
   }

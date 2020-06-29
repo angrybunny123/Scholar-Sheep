@@ -45,47 +45,60 @@ class QuestionPage extends Component {
       answer: number,
     });
   };
-  clickNext = () => {
-    if (
-      this.state.question === "" ||
-      this.state.option1 === "" ||
-      this.state.option2 === "" ||
-      this.state.option3 === "" ||
-      this.state.option4 === ""
-    ) {
-      alert("please fill in all input fields!");
-    } else if (this.state.answer === "") {
-      alert("please select an answer for your question!");
-    } else {
-      this.props.clickNext(this.state);
-    }
-  };
-  clickSubmit = () => {
-    if (
-      this.state.question === "" ||
-      this.state.option1 === "" ||
-      this.state.option2 === "" ||
-      this.state.option3 === "" ||
-      this.state.option4 === ""
-    ) {
-      alert("please fill in all input fields!");
-    } else if (this.state.answer === "") {
-      alert("please select an answer for your question!");
-    } else {
-      this.props.clickSubmit(this.state);
-    }
-  };
 
   render() {
-    let buttons = (
-      <div className={classes.questionButtons}>
+    let nextButton = (
+      <Button
+        variant="secondary"
+        className="float-right"
+        disabled
+        onClick={() => this.props.clickNext(this.state)}
+      >
+        Next
+      </Button>
+    );
+    let submitButton = (
+      <Button
+        variant="success"
+        className="float-right"
+        disabled
+        onClick={() => this.props.clickSubmit(this.state)}
+      >
+        Submit
+      </Button>
+    );
+
+    if (
+      this.state.question !== "" &&
+      this.state.option1 !== "" &&
+      this.state.option2 !== "" &&
+      this.state.option3 !== "" &&
+      this.state.option4 !== "" &&
+      this.state.answer !== ""
+    ) {
+      nextButton = (
         <Button
           variant="secondary"
           className="float-right"
-          onClick={this.clickNext}
+          onClick={() => this.props.clickNext(this.state)}
         >
           Next
         </Button>
+      );
+      submitButton = (
+        <Button
+          variant="success"
+          className="float-right"
+          onClick={() => this.props.clickSubmit(this.state)}
+        >
+          Submit
+        </Button>
+      );
+    }
+
+    let buttons = (
+      <div className={classes.questionButtons}>
+        {nextButton}
         <Button
           variant="danger"
           className="float-left"
@@ -105,13 +118,7 @@ class QuestionPage extends Component {
           >
             Back
           </Button>
-          <Button
-            variant="secondary"
-            className="float-right"
-            onClick={this.clickNext}
-          >
-            Next
-          </Button>
+          {nextButton}
         </div>
       );
     }
@@ -125,13 +132,7 @@ class QuestionPage extends Component {
           >
             Back
           </Button>
-          <Button
-            variant="success"
-            className="float-right"
-            onClick={this.clickSubmit}
-          >
-            Submit
-          </Button>
+          {submitButton}
         </div>
       );
     }
@@ -154,6 +155,7 @@ class QuestionPage extends Component {
           option3Changed={this.option3ChangedHandler}
           option4Changed={this.option4ChangedHandler}
           answerChanged={this.answerChangedHandler}
+          answer={this.state.answer}
         />
 
         {buttons}
