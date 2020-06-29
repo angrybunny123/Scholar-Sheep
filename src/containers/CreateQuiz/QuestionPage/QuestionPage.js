@@ -7,12 +7,12 @@ import Button from "react-bootstrap/Button";
 
 class QuestionPage extends Component {
   state = {
-    question: "",
-    option1: "",
-    option2: "",
-    option3: "",
-    option4: "",
-    answer: "",
+    question: this.props.currentQuestion.question,
+    option1: this.props.currentQuestion.option1,
+    option2: this.props.currentQuestion.option2,
+    option3: this.props.currentQuestion.option3,
+    option4: this.props.currentQuestion.option4,
+    answer: this.props.currentQuestion.answer,
   };
 
   questionChangedHandler = (event) => {
@@ -45,86 +45,103 @@ class QuestionPage extends Component {
       answer: number,
     });
   };
+  clickNext = () => {
+    if (
+      this.state.question === "" ||
+      this.state.option1 === "" ||
+      this.state.option2 === "" ||
+      this.state.option3 === "" ||
+      this.state.option4 === ""
+    ) {
+      alert("please fill in all input fields!");
+    } else if (this.state.answer === "") {
+      alert("please select an answer for your question!");
+    } else {
+      this.props.clickNext(this.state);
+    }
+  };
+  clickSubmit = () => {
+    if (
+      this.state.question === "" ||
+      this.state.option1 === "" ||
+      this.state.option2 === "" ||
+      this.state.option3 === "" ||
+      this.state.option4 === ""
+    ) {
+      alert("please fill in all input fields!");
+    } else if (this.state.answer === "") {
+      alert("please select an answer for your question!");
+    } else {
+      this.props.clickSubmit(this.state);
+    }
+  };
 
   render() {
     let buttons = (
-      <div>
+      <div className={classes.questionButtons}>
         <Button
           variant="secondary"
           className="float-right"
-          style={{ padding: "0.5rem 2rem" }}
-          onClick={() =>
-            this.setState(
-              {
-                question: "",
-                option1: "",
-                option2: "",
-                option3: "",
-                option4: "",
-                answer: "",
-              },
-              this.props.clickNext(this.state)
-            )
-          }
+          onClick={this.clickNext}
         >
           Next
         </Button>
+        <Button
+          variant="danger"
+          className="float-left"
+          onClick={this.props.backToCoverPage}
+        >
+          Back
+        </Button>
       </div>
     );
-    if (this.props.questionNumber >= 5) {
+    if (this.props.questionNumber >= 1) {
       buttons = (
-        <div>
+        <div className={classes.questionButtons}>
           <Button
-            variant="success"
-            className="float-right"
-            style={{ padding: "0.5rem 2rem", marginLeft: "0.5rem" }}
-            onClick={() => this.props.clickSubmit(this.state)}
+            variant="danger"
+            className="float-left"
+            onClick={this.props.backToPreviousQuestion}
           >
-            Submit
+            Back
           </Button>
           <Button
             variant="secondary"
             className="float-right"
-            style={{ padding: "0.5rem 2rem" }}
-            onClick={() =>
-              this.setState(
-                {
-                  question: "",
-                  option1: "",
-                  option2: "",
-                  option3: "",
-                  option4: "",
-                  answer: "",
-                },
-                this.props.clickNext(this.state)
-              )
-            }
+            onClick={this.clickNext}
           >
             Next
           </Button>
         </div>
       );
     }
-    if (this.props.questionNumber === 10) {
+    if (this.props.questionNumber === this.props.numberOfQuestions - 1) {
       buttons = (
-        <Button
-          variant="success"
-          className="float-right"
-          style={{ padding: "0.5rem 2rem" }}
-          onClick={() => this.props.clickSubmit(this.state)}
-        >
-          Submit
-        </Button>
+        <div className={classes.questionButtons}>
+          <Button
+            variant="danger"
+            className="float-left"
+            onClick={this.props.backToPreviousQuestion}
+          >
+            Back
+          </Button>
+          <Button
+            variant="success"
+            className="float-right"
+            onClick={this.clickSubmit}
+          >
+            Submit
+          </Button>
+        </div>
       );
     }
     return (
       <div className={classes.QuestionPage}>
         <p style={{ textAlign: "center", margin: "2rem", fontSize: "2rem" }}>
-          Question {this.props.questionNumber}
+          Question {this.props.questionNumber + 1}
         </p>
-        <section style={{ margin: "0.5rem" }}>
-          Please select the correct answer for your question!
-        </section>
+        <section>Please select the correct answer for your question!</section>
+        <section>Selected answer: {this.state.answer}</section>
         <Questions
           question={this.state.question}
           option1={this.state.option1}

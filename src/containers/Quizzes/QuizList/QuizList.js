@@ -12,16 +12,16 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import FormControl from "react-bootstrap/FormControl";
-import Pagination from 'react-bootstrap/Pagination';
+import Pagination from "react-bootstrap/Pagination";
 
 class QuizList extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-    booleanArray: [],
-    categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
-    currentPage: 1,
-    quizzesPerPage: 10,
+      booleanArray: [],
+      categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
+      currentPage: 1,
+      quizzesPerPage: 10,
     };
   }
 
@@ -43,9 +43,9 @@ class QuizList extends Component {
 
   handlePageClick = (event) => {
     this.setState({
-      currentPage: Number(event.target.id)
+      currentPage: Number(event.target.id),
     });
-  }
+  };
 
   componentDidMount() {
     this.props.onFetchQuizzes();
@@ -60,7 +60,6 @@ class QuizList extends Component {
   }
 
   render() {
-
     let quizzes = (
       <div className={classes.Loading}>
         <Spinner />
@@ -84,13 +83,14 @@ class QuizList extends Component {
       );
     });
 
-    const {currentPage, quizzesPerPage } = this.state;
+    const { currentPage, quizzesPerPage } = this.state;
 
     const indexofLastQuiz = currentPage * quizzesPerPage;
     const indexofFirstQuiz = indexofLastQuiz - quizzesPerPage;
-    const currentQuizzes = this.props.quizzesCopy.slice(indexofFirstQuiz, indexofLastQuiz);
-
-    
+    const currentQuizzes = this.props.quizzesCopy.slice(
+      indexofFirstQuiz,
+      indexofLastQuiz
+    );
 
     if (this.props.error !== "") {
       quizzes = <div className={classes.Error}>{this.props.error} :(</div>;
@@ -175,7 +175,7 @@ class QuizList extends Component {
                   <td>{quiz.category}</td>
                   <td>{quiz.name}</td>
                   <td>{quiz.popularity}</td>
-                  <td>{quiz.name}</td> {/*should be username*/}
+                  <td>{quiz.author}</td> {/*should be username*/}
                   <td>
                     <Button
                       onClick={() => this.handleShow(index)}
@@ -196,26 +196,33 @@ class QuizList extends Component {
               ))}
             </tbody>
           </Table>
-          
         </div>
       );
     }
-    
+
     let pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(this.props.quizzesCopy.length / quizzesPerPage); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(this.props.quizzesCopy.length / quizzesPerPage);
+      i++
+    ) {
       pageNumbers.push(
-        <Pagination.Item 
-          key={i} 
-          active={i === this.state.currentPage} 
-          id={i} 
-          onClick = {this.handlePageClick}>
+        <Pagination.Item
+          key={i}
+          active={i === this.state.currentPage}
+          id={i}
+          onClick={this.handlePageClick}
+        >
           {i}
-        </Pagination.Item>)
+        </Pagination.Item>
+      );
     }
-    return <div>
-            {quizzes}
-            <Pagination>{pageNumbers}</Pagination>
-            </div>;
+    return (
+      <div>
+        {quizzes}
+        <Pagination>{pageNumbers}</Pagination>
+      </div>
+    );
   }
 }
 
@@ -235,7 +242,8 @@ const mapDispatchToProps = (dispatch) => {
     onSearch: (quizzes) => dispatch(actions.quizFilter(quizzes)),
     onSearchBar: (quizzes) => dispatch(actions.quizSearch(quizzes)),
     onStartQuiz: (quiz) => dispatch(actions.quizStart(quiz)),
-    onFetchQuizzes: (pageOffSet, perPage) => dispatch(actions.fetchQuizzes(pageOffSet, perPage)),
+    onFetchQuizzes: (pageOffSet, perPage) =>
+      dispatch(actions.fetchQuizzes(pageOffSet, perPage)),
   };
 };
 

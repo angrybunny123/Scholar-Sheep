@@ -7,9 +7,10 @@ import classes from "./CoverPage.module.css";
 
 class CoverPage extends Component {
   state = {
-    name: "",
-    category: "",
-    description: "",
+    name: this.props.name,
+    category: this.props.category,
+    description: this.props.description,
+    numberOfQuestions: +this.props.numberOfQuestions,
     categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
   };
   quizNameChangedHandler = (event) => {
@@ -26,6 +27,25 @@ class CoverPage extends Component {
     this.setState({
       description: event.target.value,
     });
+  };
+  questionNumberChangedHandler = (event) => {
+    this.setState({
+      numberOfQuestions: event.target.value,
+    });
+  };
+  submitHandler = () => {
+    if (this.state.name === "") {
+      alert("please fill up the Name input!");
+    } else if (this.state.description === "") {
+      alert("please fill up the Description input!");
+    } else if (
+      this.state.numberOfQuestions < 5 ||
+      this.state.numberOfQuestions > 10
+    ) {
+      alert("number of questions should be between 5-10!");
+    } else {
+      this.props.click(this.state);
+    }
   };
   render() {
     const dropDown = this.state.categories.map((category) => {
@@ -67,18 +87,27 @@ class CoverPage extends Component {
               placeholder="Enter a description for your quiz!"
             />
           </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput2">
+            <Form.Label>Number of questions (5 - 10):</Form.Label>
+            <Form.Control
+              onChange={(event) => this.questionNumberChangedHandler(event)}
+              type="number"
+              value={this.state.numberOfQuestions}
+              placeholder="Enter a number from 5 - 10!"
+            />
+          </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             <Form.File
               id="exampleFormControlFile1"
               label="Upload a picture for your quiz! (this is not working yet)"
             />
-          </Form.Group>
+          </Form.Group> */}
         </Form>
         <Button
           variant="success"
           className="btn-block float-right"
-          onClick={() => this.props.click(this.state)}
+          onClick={this.submitHandler}
         >
           Next
         </Button>
