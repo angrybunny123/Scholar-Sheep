@@ -116,7 +116,7 @@ const ImageUpload = (props) => {
   return (
     <div className={classes.Profile}>
       <Container>
-        <Row className={classes.imageHolder}>
+        <Row className="justify-content-center">
           <Image
             src={profilePicURL}
             roundedCircle
@@ -129,9 +129,7 @@ const ImageUpload = (props) => {
         <Row className={classes.profileDescription}>
           Level: {props.userData.level}
         </Row>
-
         {attempted}
-
         <Row className={classes.profileDescription}>
           Created: {props.createdQuizzes.length}
         </Row>

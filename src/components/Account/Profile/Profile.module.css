@@ -10,7 +10,7 @@
 @media (min-width: 320px) {
   .displaypic {
     width: 80%;
-    height: 8rem;
+    height: 12rem;
     border: 3px solid black;
   }
 }
@@ -31,7 +31,6 @@
   cursor: pointer;
   outline: none;
   margin-top: 0.5rem;
-  margin-left: 0.5rem;
 }
 
 .buttons:hover {

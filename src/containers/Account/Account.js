@@ -67,39 +67,39 @@ class Account extends Component {
           <Row>
             {/* profile sidebar */}
             <Col
-              className="col-md-3 col-sm-4 col-5"
+              className="col-md-3 col-sm-4 col-12"
               style={{ backgroundColor: "lightblue" }}
             >
               {url}
             </Col>
             {/* everything else */}
-            <Col className="col-md-9 col-sm-8 col-7">
+            <Col className="col-md-9 col-sm-8 col-12">
               <div className={classes.Account}>
                 <Container>
                   <div className={classes.header}>Awards</div>
                   <Row>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={Kenneth}
                         awardname="kenneth"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={Kenneth}
                         awardname="kenneth"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={Kenneth}
                         awardname="kenneth"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={Kenneth}
                         awardname="kenneth"
@@ -116,28 +116,28 @@ class Account extends Component {
                 <Container>
                   <div className={classes.header}>Quiz topics for you!</div>
                   <Row>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={PennHan}
                         awardname="PennHan"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={PennHan}
                         awardname="PennHan"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={PennHan}
                         awardname="kenneth"
                         awarddesc="hello"
                       />
                     </Col>
-                    <Col className="col-md-3 col-sm-6 col-12">
+                    <Col className="col-md-3 col-sm-6 col-6">
                       <Award
                         awardimage={PennHan}
                         awardname="PennHan"
