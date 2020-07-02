@@ -38,6 +38,7 @@ class QuizStart extends Component {
         questions: newQuestions,
         currentQuestion: newQuestions[0],
         currentAnswer: newQuestions[0].answer,
+        seconds: this.props.currentQuiz.quizDuration,
       });
     }
     this.myInterval = setInterval(() => {
@@ -60,6 +61,7 @@ class QuizStart extends Component {
       }
     }, 1000);
   }
+
   componentWillUnmount() {
     clearInterval(this.myInterval);
   }
@@ -71,7 +73,6 @@ class QuizStart extends Component {
   };
 
   answerHandler = (answer) => {
-    console.log(answer);
     this.setState({
       inputAnswer: answer,
     });
@@ -85,6 +86,7 @@ class QuizStart extends Component {
       marks = marks + 1;
     }
     this.setState({
+      inputAnswer: "",
       currentQuestion: newQuestion,
       questionNumber: index,
       currentAnswer: newQuestion.answer,
@@ -167,15 +169,15 @@ class QuizStart extends Component {
     }
 
     let timer = (
-      <div>
-        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+      <div className={classes.Clock}>
+        {seconds < 10 ? `0${seconds}` : seconds}
       </div>
     );
 
     if (`${minutes}` <= 0 && `${seconds}` < 10) {
       timer = (
         <div className={classes.ClockFinishing}>
-          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+          {seconds < 10 ? `0${seconds}` : seconds}
         </div>
       );
     }
@@ -191,12 +193,13 @@ class QuizStart extends Component {
               Answer3={this.state.currentQuestion.option3}
               Answer4={this.state.currentQuestion.option4}
               click={this.answerHandler}
+              inputAnswer={this.state.inputAnswer}
               questionNumber={+this.state.questionNumber}
             />
             {buttons}
           </Col>
           <Col className="col-md-3 col-3">
-            <div className={classes.Clock}>
+            <div>
               {minutes === 0 && seconds === 0 ? (
                 <div>
                   <StaticModal

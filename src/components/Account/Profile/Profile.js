@@ -116,7 +116,7 @@ const ImageUpload = (props) => {
   return (
     <div className={classes.Profile}>
       <Container>
-        <Row>
+        <Row className={classes.imageHolder}>
           <Image
             src={profilePicURL}
             roundedCircle

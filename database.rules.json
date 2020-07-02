@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "quizzes": {
+      ".read": "true",
+      ".write": "true",
+      ".indexOn": [
+        "userId"
+      ]
+    },
+    "userdata": {
+      ".read": "true",
+      ".write": "true",
+      ".indexOn": [
+        "userId"
+      ]
+    }
+  }
+}

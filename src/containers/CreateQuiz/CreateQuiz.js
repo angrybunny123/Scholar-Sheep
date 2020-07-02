@@ -19,6 +19,7 @@ class CreateQuiz extends Component {
     date: "",
     popularity: 0,
     userId: "",
+    quizDuration: 0,
     questions: [
       {
         question: "",
@@ -118,7 +119,10 @@ class CreateQuiz extends Component {
   };
 
   componentDidMount() {
-    this.props.onFetchUserData(this.props.token, this.props.userId);
+    this.props.onFetchUserData(
+      localStorage.getItem("token"),
+      localStorage.getItem("userId")
+    );
   }
 
   switchToQuestions = (data) => {
@@ -127,6 +131,7 @@ class CreateQuiz extends Component {
       description: data.description,
       category: data.category,
       numberOfQuestions: +data.numberOfQuestions,
+      quizDuration: +data.quizDuration,
       coverPage: false,
     });
   };
@@ -222,6 +227,7 @@ class CreateQuiz extends Component {
         description={this.state.description}
         category={this.state.category}
         numberOfQuestions={this.state.numberOfQuestions}
+        quizDuration={this.state.quizDuration}
         click={(data) => this.switchToQuestions(data)}
       />
     );

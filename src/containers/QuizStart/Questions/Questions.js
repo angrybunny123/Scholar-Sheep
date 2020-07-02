@@ -3,7 +3,7 @@ import classes from "./Questions.module.css";
 
 class Questions extends Component {
   state = {
-    myAnswer: "fuck you",
+    myAnswer: "",
   };
 
   someFn = () => {
@@ -11,16 +11,18 @@ class Questions extends Component {
   };
 
   render() {
+    const ans = this.props.inputAnswer;
     return (
       <div className={classes.Container}>
         <div className={classes.QuestionNumber}>
           Question {this.props.questionNumber + 1}
         </div>
         <section>Click on the correct answer!</section>
+        <section>Selected answer: {ans} </section>
         <div className={classes.QuestionContainer}>
           <div>{this.props.Question}</div>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 1 ? classes.OCS : classes.OptionContainer}>
           <button
             onClick={() =>
               this.setState(
@@ -34,7 +36,7 @@ class Questions extends Component {
             {this.props.Answer1}
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 2 ? classes.OCS : classes.OptionContainer}>
           <button
             onClick={() =>
               this.setState(
@@ -48,7 +50,7 @@ class Questions extends Component {
             {this.props.Answer2}
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 3 ? classes.OCS : classes.OptionContainer}>
           <button
             onClick={() =>
               this.setState(
@@ -62,7 +64,7 @@ class Questions extends Component {
             {this.props.Answer3}
           </button>
         </div>
-        <div className={classes.OptionContainer}>
+        <div className={ans === 4 ? classes.OCS : classes.OptionContainer}>
           <button
             onClick={() =>
               this.setState(

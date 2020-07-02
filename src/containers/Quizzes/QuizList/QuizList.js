@@ -193,6 +193,7 @@ class QuizList extends Component {
                       author={quiz.author}
                       date={quiz.dateShown}
                       numberOfQuestions={quiz.questions.length}
+                      duration={quiz.quizDuration}
                       click={() => this.props.onStartQuiz(quiz)}
                     />
                   </td>

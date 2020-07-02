@@ -4,6 +4,7 @@
 
 .displaypic {
   width: 80%;
+  height: auto;
   border: 3px solid black;
 }
 

@@ -11,6 +11,7 @@ class CoverPage extends Component {
     category: this.props.category,
     description: this.props.description,
     numberOfQuestions: +this.props.numberOfQuestions,
+    quizDuration: +this.props.quizDuration,
     categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
   };
   quizNameChangedHandler = (event) => {
@@ -33,6 +34,11 @@ class CoverPage extends Component {
       numberOfQuestions: event.target.value,
     });
   };
+  quizDurationChangedHandler = (event) => {
+    this.setState({
+      quizDuration: event.target.value,
+    });
+  };
 
   render() {
     let button = (
@@ -44,7 +50,8 @@ class CoverPage extends Component {
       this.state.name !== "" &&
       this.state.description !== "" &&
       this.state.numberOfQuestions >= 5 &&
-      this.state.numberOfQuestions <= 10
+      this.state.numberOfQuestions <= 10 &&
+      this.state.quizDuration >= 30
     ) {
       button = (
         <Button
@@ -102,6 +109,16 @@ class CoverPage extends Component {
               type="number"
               value={this.state.numberOfQuestions}
               placeholder="Enter a number from 5 - 10!"
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput3">
+            <Form.Label>Duration of quiz (in seconds, at least 30):</Form.Label>
+
+            <Form.Control
+              onChange={(event) => this.quizDurationChangedHandler(event)}
+              type="number"
+              value={this.state.quizDuration}
+              placeholder="Enter a timer for your quiz (in seconds)!"
             />
           </Form.Group>
 

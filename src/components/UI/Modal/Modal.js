@@ -37,7 +37,7 @@ const modal = (props) => {
             Number of Questions: <strong>{props.numberOfQuestions}</strong>
           </p>
           <p>
-            Time Limit: <strong>{props.timeLimit}</strong>
+            Time Limit: <strong>{props.duration}</strong>
           </p>
         </Modal.Body>
         <Modal.Footer>

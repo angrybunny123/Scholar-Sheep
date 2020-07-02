@@ -13,6 +13,7 @@ import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
 import Quizzes from "./containers/Quizzes/Quizzes";
 import QuizStart from "./containers/QuizStart/QuizStart";
+import Unauthenticated from "./containers/Unauthenticated/Unauthenticated";
 import SignUp from "./containers/SignUp/SignUp";
 import SignUpComplete from "./containers/SignUp/SignUpComplete/SignUpComplete";
 
@@ -33,12 +34,26 @@ class App extends Component {
         {navBar}
         <div className="NavigationBar">
           <Route path="/" exact component={Homepage} />
-          <Route path="/account" component={Account} />
-          <Route path="/quizzes" component={Quizzes} />
-          <Route path="/createQuiz" component={CreateQuiz} />
+          <Route
+            path="/account"
+            component={this.props.isAuthenticated ? Account : Unauthenticated}
+          />
+          <Route
+            path="/quizzes"
+            component={this.props.isAuthenticated ? Quizzes : Unauthenticated}
+          />
+          <Route
+            path="/createQuiz"
+            component={
+              this.props.isAuthenticated ? CreateQuiz : Unauthenticated
+            }
+          />
           <Route path="/about" component={About} />
           <Route path="/auth" component={Auth} />
-          <Route path="/quizStart" component={QuizStart} />
+          <Route
+            path="/quizStart"
+            component={this.props.isAuthenticated ? QuizStart : Unauthenticated}
+          />
           <Route path="/logout" component={Logout} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signupcomplete" component={SignUpComplete} />

@@ -11,10 +11,12 @@ class SignUpComplete extends Component {
   render() {
     return (
       <div>
-        <Container className={classes.SignUpCompleteContainer}>
-          <h4>Sign Up Complete!</h4>
-          <p>Click Here to Log In</p>
-          <button onClick={this.routeToLogin}>Log In</button>
+        <Container>
+          <div className={classes.SignUpCompleteContainer}>
+            <h4>Sign Up Complete!</h4>
+            <p>Click Here to Log In</p>
+            <button onClick={this.routeToLogin}>Log In</button>
+          </div>
         </Container>
       </div>
     );

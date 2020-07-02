@@ -22,7 +22,7 @@ class About extends Component {
                         Praesent sed magna sed eros feugiat ullamcorper. "
         />
         <Row className={classes.CreatorRow}>
-          <Col className={classes.CreatorCol}>
+          <Col className="col-sm-6 col-12">
             <Creators
               creator="Kenneth"
               image={Kenneth}
@@ -30,7 +30,7 @@ class About extends Component {
               link="https://www.instagram.com/angrybunny_/"
             />
           </Col>
-          <Col>
+          <Col className="col-sm-6 col-12">
             <Creators
               creator="Penn Han"
               image={Pennhan}

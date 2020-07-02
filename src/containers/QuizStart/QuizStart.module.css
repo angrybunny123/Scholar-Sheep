@@ -1,19 +1,24 @@
 .Clock {
-  margin-top: 15rem;
-  padding: 3rem 0rem 3rem 0rem;
-}
-
-.Clock div {
+  margin-top: 19rem;
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
+  padding: 2rem 0rem;
+  border-radius: 50%;
+  border: 2px solid black;
+  background-color: wheat;
 }
 
 .ClockFinishing {
   color: red;
+  margin-top: 19rem;
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
+  padding: 2rem 0rem;
+  border-radius: 50%;
+  border: 2px solid black;
+  background-color: gold;
 }
 
 .FinalScore {
