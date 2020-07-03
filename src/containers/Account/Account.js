@@ -147,7 +147,7 @@ class Account extends Component {
                   </Row>
                   <div className="text-right">
                     <button className={classes.buttons}>
-                      >>View all recommended topics
+                      >>View all available quiz topics
                     </button>
                   </div>
                 </Container>

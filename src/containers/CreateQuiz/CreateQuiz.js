@@ -3,10 +3,8 @@ import React, { Component } from "react";
 import CoverPage from "./CoverPage/CoverPage";
 import QuestionPage from "./QuestionPage/QuestionPage";
 
-import { connect } from "react-redux";
 import axios from "../../axios-scholarsheep";
 import classes from "./CreateQuiz.module.css";
-import * as actions from "../../store/actions/index";
 
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Button from "react-bootstrap/Button";
@@ -118,13 +116,6 @@ class CreateQuiz extends Component {
     numberOfQuestions: 5,
   };
 
-  componentDidMount() {
-    this.props.onFetchUserData(
-      localStorage.getItem("token"),
-      localStorage.getItem("userId")
-    );
-  }
-
   switchToQuestions = (data) => {
     this.setState({
       name: data.name,
@@ -192,7 +183,7 @@ class CreateQuiz extends Component {
           userId: this.props.userId,
           date: new Date().getTime(),
           dateShown: new Date().toString().substring(4, 15),
-          author: "@" + this.props.username,
+          author: "@" + localStorage.getItem("username"),
         };
         delete quiz.loading;
         delete quiz.coverPage;
@@ -291,19 +282,4 @@ class CreateQuiz extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userId: state.auth.userId,
-    token: state.auth.token,
-    username: state.account.userData.username,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onFetchUserData: (token, userId) =>
-      dispatch(actions.fetchUserData(token, userId)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateQuiz);
+export default CreateQuiz;

@@ -1,41 +1,48 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React from "react";
+import { Table } from "react-bootstrap";
+
+import classes from "./Rankings.module.css";
 
 const rankings = (props) => {
-    return (
-        <div>
-        <p style={{ textAlign: "center", fontSize: "1.5rem" }}>
-            {props.rankingtitle}
-        </p>
-        <Table striped bordered hover>
-            <thead>
+  let table = (
+    <p className={classes.Unattempted}>
+      No one has attempted the daily quiz yet. Be the first to take on the
+      challenge!
+    </p>
+  );
+  if (props.array !== undefined && props.array !== "") {
+    const sortedArray = props.array
+      .sort((a, b) => (a.score > b.score ? -1 : 1))
+      .slice(0, 3);
+    table = (
+      <Table responsive>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Scholar Sheep</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedArray.map((item, index) => (
             <tr>
-                <th></th>
-                <th>Scholar Sheep</th>
-                <th>Score</th>
+              <td>{index + 1}</td>
+              <td>@{item.username}</td>
+              <td>
+                {item.score}/{props.numberOfQuestions}
+              </td>
             </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>10/10</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Kenneth</td>
-                <td>8/10</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                {/* <td colSpan="2">Penn Han</td> */}
-                <td>Penn Han</td>
-                <td>7/10</td>
-            </tr>
-            </tbody>
-        </Table>
-        </div>
+          ))}
+        </tbody>
+      </Table>
     );
-}
+  }
+  return (
+    <div>
+      <p className={classes.Title}>{props.rankingTitle}</p>
+      {table}
+    </div>
+  );
+};
 
 export default rankings;

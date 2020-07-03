@@ -37,6 +37,7 @@ export const fetchUserData = (token, userId) => {
             id: key,
           });
         }
+        localStorage.setItem("username", fetchedData[0].username);
         dispatch(fetchUserDataSuccess(fetchedData));
       })
       .catch((error) => {

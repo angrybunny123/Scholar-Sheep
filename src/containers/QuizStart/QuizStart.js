@@ -109,10 +109,30 @@ class QuizStart extends Component {
           ...this.props.currentQuiz,
           popularity: this.props.currentQuiz.popularity + 1,
         };
-        console.log("updatedQuiz", updatedQuiz);
         //THIS IS WHERE WE CAN DO ALOT OF THINGS!
         //WHEN A QUIZ IS SUBMITTED, A LOT OF STATES CAN BE UPDATED TOO!
-        this.props.onSubmitQuiz(updatedQuiz, updatedQuiz.id);
+        if (updatedQuiz.dailyQuiz) {
+          const userAttempt = {
+            score: marks,
+            username: localStorage.getItem("username"),
+          };
+          const dailyQuizAttemptHistory = updatedQuiz.history;
+          let updatedDailyQuiz = [];
+          if (dailyQuizAttemptHistory === "") {
+            updatedDailyQuiz = {
+              ...updatedQuiz,
+              history: [userAttempt],
+            };
+          } else {
+            updatedDailyQuiz = {
+              ...updatedQuiz,
+              history: dailyQuizAttemptHistory.concat(userAttempt),
+            };
+          }
+          this.props.onSubmitQuiz(updatedDailyQuiz, null);
+        } else {
+          this.props.onSubmitQuiz(updatedQuiz, updatedQuiz.id);
+        }
         const attemptedQuiz = {
           category: updatedQuiz.category,
           name: updatedQuiz.name,

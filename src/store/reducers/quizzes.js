@@ -8,6 +8,7 @@ const initialState = {
   error: "",
   currentQuiz: null,
   pageCount: null,
+  dailyQuiz: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +46,23 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: action.error.message,
       };
+    case actionTypes.FETCH_DAILY_QUIZ_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionTypes.FETCH_DAILY_QUIZ_SUCCESS:
+      return {
+        ...state,
+        dailyQuiz: action.quiz,
+        loading: false,
+      };
+    case actionTypes.FETCH_DAILY_QUIZ_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error.message,
+      };
     case actionTypes.QUIZ_START:
       return {
         ...state,
@@ -61,7 +79,6 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: "",
         currentQuiz: null,
-        //can do more data here when data is posted!
       };
     case actionTypes.SUBMIT_QUIZ_FAIL:
       return {

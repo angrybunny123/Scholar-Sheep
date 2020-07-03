@@ -48,12 +48,45 @@ export const fetchQuizzes = () => {
             id: key,
           });
         }
-        
-        dispatch(fetchQuizzesSuccess(fetchedQuizzes, ));
+
+        dispatch(fetchQuizzesSuccess(fetchedQuizzes));
       })
       .catch((err) => {
-        console.log(err);
         dispatch(fetchQuizzesFail(err));
+      });
+  };
+};
+
+export const fetchDailyQuizSuccess = (quiz) => {
+  return {
+    type: actionTypes.FETCH_DAILY_QUIZ_SUCCESS,
+    quiz: quiz,
+  };
+};
+
+export const fetchDailyQuizFail = (error) => {
+  return {
+    type: actionTypes.FETCH_DAILY_QUIZ_FAIL,
+    error: error,
+  };
+};
+
+export const fetchDailyQuizStart = () => {
+  return {
+    type: actionTypes.FETCH_DAILY_QUIZ_START,
+  };
+};
+
+export const fetchDailyQuiz = () => {
+  return (dispatch) => {
+    dispatch(fetchDailyQuizStart());
+    axios
+      .get("/dailyQuiz.json")
+      .then((res) => {
+        dispatch(fetchDailyQuizSuccess(res.data));
+      })
+      .catch((err) => {
+        dispatch(fetchDailyQuizFail(err));
       });
   };
 };
@@ -91,13 +124,25 @@ export const submitQuizStart = () => {
 export const submitQuiz = (quiz, id) => {
   return (dispatch) => {
     dispatch(submitQuizStart());
-    axios
-      .put("/quizzes/" + id + ".json", quiz)
-      .then((response) => {
-        dispatch(submitQuizSuccess(response.data, quiz));
-      })
-      .catch((error) => {
-        dispatch(submitQuizFail(error));
-      });
+    //dailyquiz
+    if (id === null) {
+      axios
+        .put("/dailyQuiz.json", quiz)
+        .then((response) => {
+          dispatch(submitQuizSuccess(response.data, quiz));
+        })
+        .catch((error) => {
+          dispatch(submitQuizFail(error));
+        });
+    } else {
+      axios
+        .put("/quizzes/" + id + ".json", quiz)
+        .then((response) => {
+          dispatch(submitQuizSuccess(response.data, quiz));
+        })
+        .catch((error) => {
+          dispatch(submitQuizFail(error));
+        });
+    }
   };
 };

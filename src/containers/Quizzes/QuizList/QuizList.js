@@ -175,7 +175,7 @@ class QuizList extends Component {
                   <td>{quiz.category}</td>
                   <td>{quiz.name}</td>
                   <td>{quiz.popularity}</td>
-                  <td>{quiz.author}</td> {/*should be username*/}
+                  <td>{quiz.author}</td>
                   <td>
                     <Button
                       onClick={() => this.handleShow(index)}

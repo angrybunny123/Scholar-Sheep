@@ -8,6 +8,7 @@ export {
   submitQuiz,
   quizFilter,
   quizSearch,
+  fetchDailyQuiz,
 } from "./quizzes";
 
 export { signUp, setSignUpRedirectPath, resetSignUp } from "./signup";
