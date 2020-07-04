@@ -11,13 +11,17 @@ import QuizHistoryTable from "../../components/Account/AccountTable/quizHistoryT
 import Award from "../../components/Account/Award/Award";
 import * as actions from "../../store/actions/index";
 
+import Topics from "../../components/Topics/Topics";
+
 import Profile from "../../components/Account/Profile/Profile";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 import Kenneth from "../../assets/kenneth.jpg";
-import PennHan from "../../assets/pennhan.jpg";
 
 class Account extends Component {
+  state = {
+    showAllQuizzes: false,
+  };
   componentDidMount() {
     this.props.onFetchUserData(
       localStorage.getItem("token"),
@@ -28,6 +32,12 @@ class Account extends Component {
       localStorage.getItem("userId")
     );
   }
+
+  changeTopics = (topics) => {
+    this.setState({
+      topics: topics,
+    });
+  };
 
   render() {
     let url = (
@@ -58,6 +68,73 @@ class Account extends Component {
           Sorry, {this.props.error} :(
           <p>Refresh the page and try again!</p>
         </div>
+      );
+    }
+
+    // DATA ANALYTICS PART
+    let counts = {};
+    let topics = ["Animals", "Math", "Movies", "Sports"];
+    const quizHistory = this.props.userData.quizHistory;
+
+    if (quizHistory !== undefined) {
+      for (var i = 0; i < quizHistory.length; i++) {
+        const topic = quizHistory[i].category;
+        if (counts[topic] === undefined) {
+          counts[topic] = 1;
+        } else {
+          counts[topic] = counts[topic] + 1;
+        }
+      }
+      const entries = Object.entries(counts);
+      //ONLY GIVE RECOMMENDED QUIZZES IF GOT MORE THAN OR EQUAL TO 4 DIFFERENT TOPICS ATTEMPTED
+      if (entries.length >= 7) {
+        topics = entries
+          .sort((a, b) => (a[1] > b[1] ? -1 : 1))
+          .slice(0, 4)
+          .map((x) => x[0]);
+      }
+    }
+    // END OF DATA ANALYTICS PART
+    let showAllQuizzesToggleButton = (
+      <button
+        className={classes.buttons}
+        onClick={() => {
+          this.setState({
+            showAllQuizzes: true,
+          });
+        }}
+      >
+        >>View all available quiz topics
+      </button>
+    );
+
+    if (this.state.showAllQuizzes === true) {
+      topics = [
+        "Animals",
+        "Math",
+        "Sports",
+        "Movies",
+        "Food",
+        "Singapore History",
+        "Technology",
+        "Science",
+        "Celebrities",
+        "Fun Facts",
+        "General Knowledge",
+        "Music",
+      ];
+
+      showAllQuizzesToggleButton = (
+        <button
+          className={classes.buttons}
+          onClick={() => {
+            this.setState({
+              showAllQuizzes: false,
+            });
+          }}
+        >
+          >>View recommended topics
+        </button>
       );
     }
 
@@ -116,40 +193,15 @@ class Account extends Component {
                 <Container>
                   <div className={classes.header}>Quiz topics for you!</div>
                   <Row>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={PennHan}
-                        awardname="PennHan"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={PennHan}
-                        awardname="PennHan"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={PennHan}
-                        awardname="kenneth"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={PennHan}
-                        awardname="PennHan"
-                        awarddesc="hello"
-                      />
-                    </Col>
+                    {topics.map((topic) => {
+                      return (
+                        <Col className="col-md-3 col-sm-6 col-6">
+                          <Topics topic={topic} />
+                        </Col>
+                      );
+                    })}
                   </Row>
-                  <div className="text-right">
-                    <button className={classes.buttons}>
-                      >>View all available quiz topics
-                    </button>
-                  </div>
+                  <div className="text-right">{showAllQuizzesToggleButton}</div>
                 </Container>
                 <Container>
                   <div className={classes.header}>Quiz History</div>

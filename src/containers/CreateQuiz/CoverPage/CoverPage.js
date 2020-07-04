@@ -12,7 +12,20 @@ class CoverPage extends Component {
     description: this.props.description,
     numberOfQuestions: +this.props.numberOfQuestions,
     quizDuration: +this.props.quizDuration,
-    categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
+    categories: [
+      "Animals",
+      "Math",
+      "Sports",
+      "Movies",
+      "Food",
+      "Singapore History",
+      "Technology",
+      "Science",
+      "Celebrities",
+      "Fun Facts",
+      "General Knowledge",
+      "Music",
+    ],
   };
   quizNameChangedHandler = (event) => {
     this.setState({
@@ -121,13 +134,6 @@ class CoverPage extends Component {
               placeholder="Enter a timer for your quiz (in seconds)!"
             />
           </Form.Group>
-
-          {/* <Form.Group>
-            <Form.File
-              id="exampleFormControlFile1"
-              label="Upload a picture for your quiz! (this is not working yet)"
-            />
-          </Form.Group> */}
         </Form>
         {button}
       </div>
