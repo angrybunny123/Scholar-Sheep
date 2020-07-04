@@ -87,7 +87,7 @@ class QuizList extends Component {
 
     const indexofLastQuiz = currentPage * quizzesPerPage;
     const indexofFirstQuiz = indexofLastQuiz - quizzesPerPage;
-    const currentQuizzes = this.props.quizzesCopy.slice(
+    const currentQuizzes = this.props.quizzesDisplayed.slice(
       indexofFirstQuiz,
       indexofLastQuiz
     );
@@ -146,8 +146,9 @@ class QuizList extends Component {
             </DropdownButton>
             <FormControl
               onChange={(event) => {
+                console.log(event.target.value);
                 const input = event.target.value.toLowerCase();
-                const quizzesCopy = [...this.props.quizzes];
+                const quizzesCopy = [...this.props.quizzesCopy];
                 const newQuizzes = quizzesCopy.filter((quiz) =>
                   quiz.name.toLowerCase().includes(input)
                 );

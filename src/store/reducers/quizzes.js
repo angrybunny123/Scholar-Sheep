@@ -22,7 +22,6 @@ const reducer = (state = initialState, action) => {
     case actionTypes.QUIZ_SEARCH:
       return {
         ...state,
-        quizzesCopy: action.quizzes,
         quizzesDisplayed: action.quizzes,
       };
     case actionTypes.FETCH_QUIZZES_START:
