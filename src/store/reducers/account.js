@@ -68,7 +68,6 @@ const fetchUserQuizzesFail = (state, action) => {
 };
 
 const fetchUserQuizzesSuccess = (state, action) => {
-  console.log(action.quizzes);
   return {
     ...state,
     quizzesLoading: false,

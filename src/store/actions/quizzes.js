@@ -1,10 +1,25 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios-scholarsheep";
 
-export const quizFilter = (quizzes) => {
+export const quizFilterStart = () => {
   return {
-    type: actionTypes.QUIZ_FILTER,
+    type: actionTypes.QUIZ_FILTER_START,
+  };
+};
+
+export const quizFilterSuccess = (quizzes) => {
+  return {
+    type: actionTypes.QUIZ_FILTER_SUCCESS,
     quizzes: quizzes,
+  };
+};
+
+export const quizFilter = (quizzes) => {
+  return (dispatch) => {
+    dispatch(quizFilterStart());
+    axios.get("/quizzes.json").then((res) => {
+      dispatch(quizFilterSuccess(quizzes));
+    });
   };
 };
 
@@ -92,7 +107,6 @@ export const fetchDailyQuiz = () => {
 };
 
 export const quizStart = (quiz) => {
-  console.log(quiz);
   return {
     type: actionTypes.QUIZ_START,
     quiz: quiz,

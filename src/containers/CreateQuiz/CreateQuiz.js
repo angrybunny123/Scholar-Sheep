@@ -180,7 +180,7 @@ class CreateQuiz extends Component {
       () => {
         const quiz = {
           ...this.state,
-          userId: this.props.userId,
+          userId: localStorage.getItem("userId"),
           date: new Date().getTime(),
           dateShown: new Date().toString().substring(4, 15),
           author: "@" + localStorage.getItem("username"),

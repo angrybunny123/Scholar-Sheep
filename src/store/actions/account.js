@@ -2,7 +2,6 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 export const fetchUserDataSuccess = (userData) => {
-  // console.log(userData);
   return {
     type: actionTypes.FETCH_USER_DATA_SUCCESS,
     userData: userData[0],
@@ -47,7 +46,6 @@ export const fetchUserData = (token, userId) => {
 };
 
 export const fetchUserQuizzes = (token, userId) => {
-  console.log("fetch user quizzes called");
   const queryParams =
     "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
   return (dispatch) => {
@@ -62,7 +60,6 @@ export const fetchUserQuizzes = (token, userId) => {
             id: key,
           });
         }
-        console.log("fetched Data", fetchedData);
         dispatch(fetchUserQuizzesSuccess(fetchedData));
       })
       .catch((error) => {
@@ -72,7 +69,6 @@ export const fetchUserQuizzes = (token, userId) => {
 };
 
 export const updateUserDataSuccess = (userData) => {
-  // console.log(userData);
   return {
     type: actionTypes.UPDATE_USER_DATA_SUCCESS,
     userData: userData,
@@ -93,7 +89,6 @@ export const updateUserDataStart = () => {
 };
 
 export const updateUserData = (userData) => {
-  console.log("update user data called");
   return (dispatch) => {
     dispatch(updateUserDataStart());
     axios

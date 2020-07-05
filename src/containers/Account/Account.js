@@ -15,6 +15,7 @@ import Topics from "../../components/Topics/Topics";
 
 import Profile from "../../components/Account/Profile/Profile";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import categories from "../../components/Topics/TopicsList";
 
 import Kenneth from "../../assets/kenneth.jpg";
 
@@ -73,7 +74,7 @@ class Account extends Component {
 
     // DATA ANALYTICS PART
     let counts = {};
-    let topics = ["Animals", "Math", "Movies", "Sports"];
+    let topics = ["Animals", "Math", "Sports", "Movies"];
     const quizHistory = this.props.userData.quizHistory;
 
     if (quizHistory !== undefined) {
@@ -87,7 +88,7 @@ class Account extends Component {
       }
       const entries = Object.entries(counts);
       //ONLY GIVE RECOMMENDED QUIZZES IF GOT MORE THAN OR EQUAL TO 4 DIFFERENT TOPICS ATTEMPTED
-      if (entries.length >= 7) {
+      if (entries.length >= 4) {
         topics = entries
           .sort((a, b) => (a[1] > b[1] ? -1 : 1))
           .slice(0, 4)
@@ -109,20 +110,7 @@ class Account extends Component {
     );
 
     if (this.state.showAllQuizzes === true) {
-      topics = [
-        "Animals",
-        "Math",
-        "Sports",
-        "Movies",
-        "Food",
-        "Singapore History",
-        "Technology",
-        "Science",
-        "Celebrities",
-        "Fun Facts",
-        "General Knowledge",
-        "Music",
-      ];
+      topics = categories;
 
       showAllQuizzesToggleButton = (
         <button

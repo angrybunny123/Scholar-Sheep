@@ -1,4 +1,10 @@
 .award:hover {
+  color: black;
   box-shadow: 0 0 10px;
   cursor: pointer;
+}
+
+.award {
+  text-decoration: none;
+  color: black;
 }

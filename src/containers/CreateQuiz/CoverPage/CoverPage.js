@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import classes from "./CoverPage.module.css";
+import categories from "../../../components/Topics/TopicsList";
 
 class CoverPage extends Component {
   state = {
@@ -12,20 +13,7 @@ class CoverPage extends Component {
     description: this.props.description,
     numberOfQuestions: +this.props.numberOfQuestions,
     quizDuration: +this.props.quizDuration,
-    categories: [
-      "Animals",
-      "Math",
-      "Sports",
-      "Movies",
-      "Food",
-      "Singapore History",
-      "Technology",
-      "Science",
-      "Celebrities",
-      "Fun Facts",
-      "General Knowledge",
-      "Music",
-    ],
+    categories: categories,
   };
   quizNameChangedHandler = (event) => {
     this.setState({

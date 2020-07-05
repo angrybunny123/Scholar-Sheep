@@ -14,12 +14,14 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import FormControl from "react-bootstrap/FormControl";
 import Pagination from "react-bootstrap/Pagination";
 
+import categories from "../../../components/Topics/TopicsList";
+
 class QuizList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       booleanArray: [],
-      categories: ["Animals", "Math", "Sports", "Emotions", "Cooking"],
+      categories: categories,
       currentPage: 1,
       quizzesPerPage: 10,
     };
@@ -49,6 +51,7 @@ class QuizList extends Component {
 
   componentDidMount() {
     this.props.onFetchQuizzes();
+
     const len = this.props.quizzes.length;
     const boolArr = new Array(len);
     for (var i = 0; i < len; ++i) {
@@ -94,7 +97,7 @@ class QuizList extends Component {
 
     if (this.props.error !== "") {
       quizzes = <div className={classes.Error}>{this.props.error} :(</div>;
-    } else if (!this.props.loading) {
+    } else if (!this.props.loading && !this.props.filterLoading) {
       quizzes = (
         <div>
           <div className={classes.Heading}>Quiz List</div>
@@ -146,7 +149,6 @@ class QuizList extends Component {
             </DropdownButton>
             <FormControl
               onChange={(event) => {
-                console.log(event.target.value);
                 const input = event.target.value.toLowerCase();
                 const quizzesCopy = [...this.props.quizzesCopy];
                 const newQuizzes = quizzesCopy.filter((quiz) =>
@@ -238,6 +240,7 @@ const mapStateToProps = (state) => {
     quizzesCopy: state.quizzes.quizzesCopy,
     quizzesDisplayed: state.quizzes.quizzesDisplayed,
     loading: state.quizzes.loading,
+    filterLoading: state.quizzes.filterLoading,
     error: state.quizzes.error,
   };
 };

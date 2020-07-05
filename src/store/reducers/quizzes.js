@@ -5,6 +5,7 @@ const initialState = {
   quizzesCopy: [],
   quizzesDisplayed: [],
   loading: false,
+  filterLoading: false,
   error: "",
   currentQuiz: null,
   pageCount: null,
@@ -13,9 +14,15 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.QUIZ_FILTER:
+    case actionTypes.QUIZ_FILTER_START:
       return {
         ...state,
+        filterLoading: true,
+      };
+    case actionTypes.QUIZ_FILTER_SUCCESS:
+      return {
+        ...state,
+        filterLoading: false,
         quizzesCopy: action.quizzes,
         quizzesDisplayed: action.quizzes,
       };
