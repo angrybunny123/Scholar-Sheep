@@ -35,7 +35,8 @@ class QuizList extends Component {
     });
   };
 
-  handleShow = (index) => {
+  //ONLY ALLOWING USERS TO ATTEMPT A QUIZ ONCE!!!
+  handleShow = (quiz, index) => {
     const newArr = [...this.state.booleanArray];
     newArr[index] = true;
     this.setState({
@@ -181,7 +182,7 @@ class QuizList extends Component {
                   <td>{quiz.author}</td>
                   <td>
                     <Button
-                      onClick={() => this.handleShow(index)}
+                      onClick={() => this.handleShow(quiz, index)}
                       variant="outline-success"
                     >
                       Attempt

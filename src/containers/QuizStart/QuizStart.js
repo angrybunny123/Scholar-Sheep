@@ -109,6 +109,13 @@ class QuizStart extends Component {
           ...this.props.currentQuiz,
           popularity: this.props.currentQuiz.popularity + 1,
         };
+        let attemptedQuiz = {
+          category: updatedQuiz.category,
+          name: updatedQuiz.name,
+          score: marks,
+          id: updatedQuiz.id,
+          questionNumber: updatedQuiz.questions.length,
+        };
         //THIS IS WHERE WE CAN DO ALOT OF THINGS!
         //WHEN A QUIZ IS SUBMITTED, A LOT OF STATES CAN BE UPDATED TOO!
         if (updatedQuiz.dailyQuiz) {
@@ -129,16 +136,14 @@ class QuizStart extends Component {
               history: dailyQuizAttemptHistory.concat(userAttempt),
             };
           }
+          attemptedQuiz = {
+            ...attemptedQuiz,
+            dailyQuiz: true,
+          };
           this.props.onSubmitQuiz(updatedDailyQuiz, null);
         } else {
           this.props.onSubmitQuiz(updatedQuiz, updatedQuiz.id);
         }
-        const attemptedQuiz = {
-          category: updatedQuiz.category,
-          name: updatedQuiz.name,
-          score: marks,
-          questionNumber: updatedQuiz.questions.length,
-        };
         let newData = [];
         if (this.props.userData.quizHistory) {
           newData = {

@@ -18,10 +18,22 @@ class dailyQuiz extends Component {
   };
 
   componentDidMount() {
+    this.props.onFetchUserData(
+      localStorage.getItem("token"),
+      localStorage.getItem("userId")
+    );
     this.props.onFetchDailyQuiz();
   }
 
   handleShow = () => {
+    if (this.props.userData.quizHistory) {
+      for (let i = 0; i < this.props.userData.quizHistory.length; i++) {
+        if (this.props.userData.quizHistory[i].id === this.props.dailyQuiz.id) {
+          alert("You have already attempted the daily quiz today.");
+          return null;
+        }
+      }
+    }
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -115,6 +127,7 @@ const mapStateToProps = (state) => {
     loading: state.quizzes.loading,
     error: state.quizzes.error,
     dailyQuiz: state.quizzes.dailyQuiz,
+    userData: state.account.userData,
   };
 };
 
@@ -123,6 +136,8 @@ const mapDispatchToProps = (dispatch) => {
     //action must be executed ()!
     onStartQuiz: (quiz) => dispatch(actions.quizStart(quiz)),
     onFetchDailyQuiz: () => dispatch(actions.fetchDailyQuiz()),
+    onFetchUserData: (token, userId) =>
+      dispatch(actions.fetchUserData(token, userId)),
   };
 };
 
