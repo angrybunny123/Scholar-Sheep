@@ -8,7 +8,10 @@ import classes from "./Account.module.css";
 
 import CreatedQuizzesTable from "../../components/Account/AccountTable/createdQuizzesTable";
 import QuizHistoryTable from "../../components/Account/AccountTable/quizHistoryTable";
-import Award from "../../components/Account/Award/Award";
+import BroadHorizonsAward from "../../components/Account/Award/BroadHorizonsAward/BroadHorizonsAward";
+import HardWorkerAward from "../../components/Account/Award/HardWorkerAward/HardWorkerAward";
+import ProfessorAward from "../../components/Account/Award/ProfessorAward/ProfessorAward";
+import ScholarSheepAward from "../../components/Account/Award/ScholarSheepAward/ScholarSheepAward";
 import * as actions from "../../store/actions/index";
 
 import Topics from "../../components/Topics/Topics";
@@ -17,11 +20,10 @@ import Profile from "../../components/Account/Profile/Profile";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import categories from "../../components/Topics/TopicsList";
 
-import Kenneth from "../../assets/kenneth.jpg";
-
 class Account extends Component {
   state = {
     showAllQuizzes: false,
+    quizHistoryLength: 0,
   };
   componentDidMount() {
     this.props.onFetchUserData(
@@ -46,12 +48,40 @@ class Account extends Component {
         <Profile />
       </div>
     );
+    let awards = (
+      <div className={classes.Profile}>
+        <Spinner />
+        <p style={{ textAlign: "center" }}>Loading Awards...</p>
+      </div>
+    );
     if (this.props.loading) {
       url = (
         <div className={classes.Profile}>
           <Spinner />
           <p style={{ textAlign: "center" }}>Uploading image...</p>
         </div>
+      );
+    }
+
+    if (!this.props.fetchDataLoading && !this.props.fetchQuizzesLoading) {
+      awards = (
+        <Container>
+          <div className={classes.header}>Awards</div>
+          <Row>
+            <Col className="col-md-3 col-sm-6 col-6">
+              <BroadHorizonsAward />
+            </Col>
+            <Col className="col-md-3 col-sm-6 col-6">
+              <HardWorkerAward />
+            </Col>
+            <Col className="col-md-3 col-sm-6 col-6">
+              <ProfessorAward />
+            </Col>
+            <Col className="col-md-3 col-sm-6 col-6">
+              <ScholarSheepAward />
+            </Col>
+          </Row>
+        </Container>
       );
     }
 
@@ -140,44 +170,7 @@ class Account extends Component {
             {/* everything else */}
             <Col className="col-md-9 col-sm-8 col-12">
               <div className={classes.Account}>
-                <Container>
-                  <div className={classes.header}>Awards</div>
-                  <Row>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={Kenneth}
-                        awardname="kenneth"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={Kenneth}
-                        awardname="kenneth"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={Kenneth}
-                        awardname="kenneth"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                    <Col className="col-md-3 col-sm-6 col-6">
-                      <Award
-                        awardimage={Kenneth}
-                        awardname="kenneth"
-                        awarddesc="hello"
-                      />
-                    </Col>
-                  </Row>
-                  <div className="text-right">
-                    <button className={classes.buttons}>
-                      >>View all achievements
-                    </button>
-                  </div>
-                </Container>
+                {awards}
                 <Container>
                   <div className={classes.header}>Quiz topics for you!</div>
                   <Row>
@@ -212,10 +205,10 @@ const mapStateToProps = (state) => {
   return {
     userData: state.account.userData,
     loading: state.account.loading,
+    fetchDataLoading: state.account.fetchDataLoading,
+    fetchQuizzesLoading: state.account.quizzesLoading,
     error: state.account.error,
     createdQuizzes: state.account.createdQuizzes,
-    // quizzesLoading: state.account.quizzesLoading, can be used to indicate loading when quizzes are being loaded.
-    // quizzesError: state.account.quizzesError,
   };
 };
 
@@ -223,7 +216,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFetchUserData: (token, userId) =>
       dispatch(actions.fetchUserData(token, userId)),
-    onUpdateUserData: (userData) => dispatch(actions.updateUserData(userData)),
     onFetchUserQuizzes: (token, userId) =>
       dispatch(actions.fetchUserQuizzes(token, userId)),
   };

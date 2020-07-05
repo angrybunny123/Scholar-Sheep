@@ -35,7 +35,7 @@ class QuizList extends Component {
     });
   };
 
-  //ONLY ALLOWING USERS TO ATTEMPT A QUIZ ONCE!!!
+  //CAN ONLY ALLOW USERS TO ATTEMPT A QUIZ ONCE (LOOP THROUGH QUIZ HISTORY)!!!
   handleShow = (quiz, index) => {
     const newArr = [...this.state.booleanArray];
     newArr[index] = true;

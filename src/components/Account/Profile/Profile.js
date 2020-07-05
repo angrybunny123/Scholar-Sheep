@@ -26,12 +26,7 @@ const ImageUpload = (props) => {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       uploadTask.on(
         "state_changed",
-        (snapshot) => {
-          // const progress = Math.round(
-          //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          // );
-          // setProgress(progress);
-        },
+        (snapshot) => {},
         (error) => {
           console.log(error);
         },
@@ -126,16 +121,10 @@ const ImageUpload = (props) => {
         </Row>
         <br />
         <Row className={classes.username}>@{props.userData.username}</Row>
-        <Row className={classes.profileDescription}>
-          Level: {props.userData.level}
-        </Row>
+        <Row className={classes.profileDescription}>Sheep Points: 0</Row>
         {attempted}
         <Row className={classes.profileDescription}>
           Created: {props.createdQuizzes.length}
-        </Row>
-        <Row className={classes.profileDescription}>
-          No. of Awards:{" "}
-          {props.userData.awards ? props.userData.awards.length : "0"}
         </Row>
         <Row className={classes.profileDescription}>
           Joined: {props.userData.dateJoined}

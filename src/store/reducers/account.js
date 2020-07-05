@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   userData: [],
   loading: false,
+  fetchDataLoading: false,
   error: "",
   createdQuizzes: [],
   quizzesLoading: false,
@@ -12,6 +13,7 @@ const initialState = {
 const fetchUserDataStart = (state, action) => {
   return {
     ...state,
+    fetchDataLoading: true,
   };
 };
 
@@ -19,12 +21,14 @@ const fetchUserDataSuccess = (state, action) => {
   return {
     ...state,
     userData: action.userData,
+    fetchDataLoading: false,
   };
 };
 
 const fetchUserDataFail = (state, action) => {
   return {
     ...state,
+    fetchDataLoading: false,
   };
 };
 
@@ -70,9 +74,9 @@ const fetchUserQuizzesFail = (state, action) => {
 const fetchUserQuizzesSuccess = (state, action) => {
   return {
     ...state,
+    createdQuizzes: action.quizzes,
     quizzesLoading: false,
     quizzesError: "",
-    createdQuizzes: action.quizzes,
   };
 };
 
