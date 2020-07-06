@@ -20,7 +20,7 @@ class Questions extends Component {
           <button onClick={() => this.props.answerChanged(1)}>
             <Form.Control
               value={this.props.option1}
-              placeholder="Question 1"
+              placeholder="Option 1"
               style={{ border: "none", backgroundColor: "inherit" }}
               onChange={(event) => this.props.option1Changed(event)}
             />
@@ -30,7 +30,7 @@ class Questions extends Component {
           <button onClick={() => this.props.answerChanged(2)}>
             <Form.Control
               value={this.props.option2}
-              placeholder="Question 2"
+              placeholder="Option 2"
               style={{ border: "none", backgroundColor: "inherit" }}
               onChange={(event) => this.props.option2Changed(event)}
             />
@@ -40,7 +40,7 @@ class Questions extends Component {
           <button onClick={() => this.props.answerChanged(3)}>
             <Form.Control
               value={this.props.option3}
-              placeholder="Question 3"
+              placeholder="Option 3"
               style={{ border: "none", backgroundColor: "inherit" }}
               onChange={(event) => this.props.option3Changed(event)}
             />
@@ -50,7 +50,7 @@ class Questions extends Component {
           <button onClick={() => this.props.answerChanged(4)}>
             <Form.Control
               value={this.props.option4}
-              placeholder="Question 4"
+              placeholder="Option 4"
               style={{ border: "none", backgroundColor: "inherit" }}
               onChange={(event) => this.props.option4Changed(event)}
             />

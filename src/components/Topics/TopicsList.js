@@ -4,12 +4,12 @@ const categories = [
   "Sports",
   "Movies",
   "Food",
-  "Singapore History",
+  "History",
   "Technology",
   "Science",
   "Celebrities",
   "Fun Facts",
-  "General Knowledge",
+  "General",
   "Music",
 ];
 

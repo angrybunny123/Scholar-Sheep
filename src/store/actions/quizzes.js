@@ -8,7 +8,6 @@ export const quizFilterStart = () => {
 };
 
 export const quizFilterSuccess = (quizzes) => {
-  console.log(quizzes, "quiz filter success");
   return {
     type: actionTypes.QUIZ_FILTER_SUCCESS,
     quizzes: quizzes,

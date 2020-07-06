@@ -141,7 +141,10 @@ class QuestionPage extends Component {
         <p style={{ textAlign: "center", margin: "2rem", fontSize: "2rem" }}>
           Question {this.props.questionNumber + 1}
         </p>
-        <section>Please select the correct answer for your question!</section>
+        <section>
+          Please select the correct answer for your question! (The option
+          highlighted in green is the selected correct answer! )
+        </section>
         <section>Selected answer: {this.state.answer}</section>
         <Questions
           question={this.state.question}

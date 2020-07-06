@@ -6,17 +6,14 @@ import classes from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 
 import orbitalLogo from "../../assets/orbitallogo.png";
-// import accountButton from "../../assets/accountbutton.PNG";
-// import createButton from "../../assets/createbutton.PNG";
-// import homeButton from "../../assets/homebutton.PNG";
-// import quizzesButton from "../../assets/quizbutton.PNG";
-// import aboutButton from "../../assets/aboutbutton.PNG";
 
 const navBar = () => {
   return (
     <Navbar expand="lg" style={{ padding: "1rem", backgroundColor: "#3a60be" }}>
       <Navbar.Brand style={{ marginRight: "50px" }}>
-        <img src={orbitalLogo} style={{ width: "3rem" }} alt="orbitalLogo" />
+        <Link to="/">
+          <img src={orbitalLogo} style={{ width: "3rem" }} alt="orbitalLogo" />
+        </Link>
         <div
           style={{
             display: "inline-block",

@@ -30,10 +30,8 @@ const topics = (props) => {
     card = <TopicCard topicimage={sportsLogo} topicname="Sports" />;
   } else if (topic === "Food") {
     card = <TopicCard topicimage={foodLogo} topicname="Food" />;
-  } else if (topic === "Singapore History") {
-    card = (
-      <TopicCard topicimage={sghistoryLogo} topicname="Singapore History" />
-    );
+  } else if (topic === "History") {
+    card = <TopicCard topicimage={sghistoryLogo} topicname="History" />;
   } else if (topic === "Technology") {
     card = <TopicCard topicimage={technologyLogo} topicname="Technology" />;
   } else if (topic === "Science") {
@@ -42,13 +40,8 @@ const topics = (props) => {
     card = <TopicCard topicimage={celebritiesLogo} topicname="Celebrities" />;
   } else if (topic === "Fun Facts") {
     card = <TopicCard topicimage={funfactsLogo} topicname="Fun Facts" />;
-  } else if (topic === "General Knowledge") {
-    card = (
-      <TopicCard
-        topicimage={generalknowledgeLogo}
-        topicname="General Knowledge"
-      />
-    );
+  } else if (topic === "General") {
+    card = <TopicCard topicimage={generalknowledgeLogo} topicname="General" />;
   } else if (topic === "Music") {
     card = <TopicCard topicimage={musicLogo} topicname="Music" />;
   }

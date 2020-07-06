@@ -178,6 +178,20 @@ class QuizStart extends Component {
         </Button>
       </div>
     );
+    if (this.state.inputAnswer === "") {
+      buttons = (
+        <div>
+          <Button
+            disabled
+            className="float-right"
+            variant="outline-secondary"
+            onClick={this.nextQuestionHandler}
+          >
+            Next question
+          </Button>
+        </div>
+      );
+    }
 
     if (this.state.questionNumber + 1 === this.state.questions.length) {
       buttons = (

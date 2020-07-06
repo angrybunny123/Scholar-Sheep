@@ -59,7 +59,9 @@ class SignUp extends Component {
             : this.props.error.message === "INVALID_EMAIL"
             ? "Please enter a valid email address!"
             : this.props.error.message ===
-              "WEAK_PASSWORD : Password should be at least 6 characters, Password should be at least 6 characters!"}
+              "WEAK_PASSWORD : Password should be at least 6 characters"
+            ? "Password should be at least 6 characters!"
+            : "Error: 1 or more input fields did not meet our requirements."}
         </p>
       );
     }

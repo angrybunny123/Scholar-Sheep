@@ -8,3 +8,12 @@
   text-decoration: none;
   color: black;
 }
+
+.cardTitle {
+  text-align: center;
+}
+
+.cardTitleTechnology {
+  text-align: center;
+  font-size: 2px;
+}

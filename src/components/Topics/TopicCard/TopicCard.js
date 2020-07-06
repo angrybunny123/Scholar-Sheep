@@ -22,7 +22,7 @@ const topicCard = (props) => {
             style={{ height: "12.5rem" }}
           />
           <Card.Body>
-            <Card.Title style={{ textAlign: "center" }}>
+            <Card.Title style={{ textAlign: "center", fontSize: "1.1rem" }}>
               {props.topicname}
             </Card.Title>
           </Card.Body>
