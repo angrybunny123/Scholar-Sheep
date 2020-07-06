@@ -43,6 +43,7 @@ class Account extends Component {
   };
 
   render() {
+    console.log(this.props.quizzes, "account");
     let url = (
       <div className="sticky-top">
         <Profile />
@@ -204,6 +205,7 @@ class Account extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.account.userData,
+    quizzes: state.quizzes.quizzes,
     loading: state.account.loading,
     fetchDataLoading: state.account.fetchDataLoading,
     fetchQuizzesLoading: state.account.quizzesLoading,

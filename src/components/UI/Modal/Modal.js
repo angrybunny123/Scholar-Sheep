@@ -28,7 +28,7 @@ const modal = (props) => {
             Category: <strong>{props.category}</strong>
           </p>
           <p>
-            No. of times attempted: <strong>{props.popularity}</strong>
+            Total attempts: <strong>{props.popularity}</strong>
           </p>
           <p>
             Date Created: <strong>{props.date}</strong>

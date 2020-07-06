@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import * as actions from "./index";
 
 export const fetchUserDataSuccess = (userData) => {
   return {
@@ -61,6 +62,7 @@ export const fetchUserQuizzes = (token, userId) => {
           });
         }
         dispatch(fetchUserQuizzesSuccess(fetchedData));
+        dispatch(actions.fetchQuizzes());
       })
       .catch((error) => {
         dispatch(fetchUserQuizzesFail(error));
