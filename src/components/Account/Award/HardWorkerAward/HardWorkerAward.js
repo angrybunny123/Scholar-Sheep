@@ -7,6 +7,9 @@ import HardWorkerBronze from "../../../../assets/Awards/Hardworker_Bronze.png";
 import HardWorkerSilver from "../../../../assets/Awards/Hardworker_Silver.png";
 import HardWorkerGold from "../../../../assets/Awards/Hardworker_Gold.png";
 import HardWorkerExpert from "../../../../assets/Awards/Hardworker_Expert.png";
+import NoAward from "../../../../assets/Awards/NoAward.png";
+
+import classes from "../Award.module.css";
 
 class hardWorkerAward extends Component {
   state = {
@@ -44,8 +47,8 @@ class hardWorkerAward extends Component {
   initialiseState = (dailyQuizzesAttempted) => {
     if (dailyQuizzesAttempted < this.state.limitOne) {
       this.setState({
-        awardName: "Hard Worker I",
-        awardImage: HardWorkerBronze,
+        awardName: "Hard Worker 0",
+        awardImage: NoAward,
         awardDescription: "Do 10 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitOne) * 100,
         awardProgressFraction:
@@ -53,8 +56,8 @@ class hardWorkerAward extends Component {
       });
     } else if (dailyQuizzesAttempted < this.state.limitTwo) {
       this.setState({
-        awardName: "Hard Worker II",
-        awardImage: HardWorkerSilver,
+        awardName: "Hard Worker I",
+        awardImage: HardWorkerBronze,
         awardDescription: "Do 30 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitTwo) * 100,
         awardProgressFraction:
@@ -62,8 +65,8 @@ class hardWorkerAward extends Component {
       });
     } else if (dailyQuizzesAttempted < this.state.limitThree) {
       this.setState({
-        awardName: "Hard Worker III",
-        awardImage: HardWorkerGold,
+        awardName: "Hard Worker II",
+        awardImage: HardWorkerSilver,
         awardDescription: "Do 60 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitThree) * 100,
         awardProgressFraction:
@@ -71,8 +74,8 @@ class hardWorkerAward extends Component {
       });
     } else if (dailyQuizzesAttempted < this.state.limitFour) {
       this.setState({
-        awardName: "Hard Worker IV",
-        awardImage: HardWorkerExpert,
+        awardName: "Hard Worker III",
+        awardImage: HardWorkerGold,
         awardDescription: "Do 100 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitFour) * 100,
         awardProgressFraction:
@@ -82,7 +85,7 @@ class hardWorkerAward extends Component {
       this.setState({
         awardName: "Hard Worker IV",
         awardImage: HardWorkerExpert,
-        awardDescription: "Do 100 Daily Quizzes",
+        awardDescription: "Maximum tier attained!",
         awardProgress: 100,
         awardProgressFraction:
           dailyQuizzesAttempted + "/" + this.state.limitFour,
@@ -91,7 +94,7 @@ class hardWorkerAward extends Component {
   };
   render() {
     return (
-      <div>
+      <div className={classes.Award}>
         <Card style={{ marginTop: "1rem" }}>
           <Card.Img variant="top" src={this.state.awardImage} />
           <Card.Body>

@@ -63,6 +63,7 @@ export const fetchUserQuizzes = (token, userId) => {
         }
         dispatch(fetchUserQuizzesSuccess(fetchedData));
         dispatch(actions.fetchQuizzes());
+        //a very bad fix but it works lol how do i do this asynchronously?
       })
       .catch((error) => {
         dispatch(fetchUserQuizzesFail(error));

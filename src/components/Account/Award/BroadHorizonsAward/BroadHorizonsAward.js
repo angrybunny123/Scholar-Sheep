@@ -7,6 +7,9 @@ import BroadHorizonsBronze from "../../../../assets/Awards/BroadHorizon_Bronze.p
 import BroadHorizonsSilver from "../../../../assets/Awards/BroadHorizon_Silver.png";
 import BroadHorizonsGold from "../../../../assets/Awards/BroadHorizon_Gold.png";
 import BroadHorizonsExpert from "../../../../assets/Awards/BroadHorizon_Expert.png";
+import NoAward from "../../../../assets/Awards/NoAward.png";
+
+import classes from "../Award.module.css";
 
 class broadHorizonsAward extends Component {
   state = {
@@ -38,32 +41,32 @@ class broadHorizonsAward extends Component {
   initialiseState = (quizzesAttempted) => {
     if (quizzesAttempted < this.state.limitOne) {
       this.setState({
-        awardName: "Broad Horizons I",
-        awardImage: BroadHorizonsBronze,
+        awardName: "Broad Horizons 0",
+        awardImage: NoAward,
         awardDescription: "Attempt 25 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitOne) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitOne,
       });
     } else if (quizzesAttempted < this.state.limitTwo) {
       this.setState({
-        awardName: "Broad Horizons II",
-        awardImage: BroadHorizonsSilver,
+        awardName: "Broad Horizons I",
+        awardImage: BroadHorizonsBronze,
         awardDescription: "Attempt 100 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitTwo) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitTwo,
       });
     } else if (quizzesAttempted < this.state.limitThree) {
       this.setState({
-        awardName: "Broad Horizons III",
-        awardImage: BroadHorizonsGold,
+        awardName: "Broad Horizons II",
+        awardImage: BroadHorizonsSilver,
         awardDescription: "Attempt 250 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitThree) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitThree,
       });
     } else if (quizzesAttempted < this.state.limitFour) {
       this.setState({
-        awardName: "Broad Horizons IV",
-        awardImage: BroadHorizonsExpert,
+        awardName: "Broad Horizons III",
+        awardImage: BroadHorizonsGold,
         awardDescription: "Attempt 500 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitFour) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitFour,
@@ -72,7 +75,7 @@ class broadHorizonsAward extends Component {
       this.setState({
         awardName: "Broad Horizons IV",
         awardImage: BroadHorizonsExpert,
-        awardDescription: "Attempt 500 quizzes",
+        awardDescription: "Maximum tier attained!",
         awardProgress: 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitFour,
       });
@@ -80,7 +83,7 @@ class broadHorizonsAward extends Component {
   };
   render() {
     return (
-      <div>
+      <div className={classes.Award}>
         <Card style={{ marginTop: "1rem" }}>
           <Card.Img variant="top" src={this.state.awardImage} />
           <Card.Body>

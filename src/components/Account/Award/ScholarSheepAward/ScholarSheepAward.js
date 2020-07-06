@@ -7,6 +7,9 @@ import ScholarSheepBronze from "../../../../assets/Awards/Scholarsheep_Bronze.pn
 import ScholarSheepSilver from "../../../../assets/Awards/Scholarsheep_Silver.png";
 import ScholarSheepGold from "../../../../assets/Awards/Scholarsheep_Gold.png";
 import ScholarSheepExpert from "../../../../assets/Awards/Scholarsheep_Expert.png";
+import NoAward from "../../../../assets/Awards/NoAward.png";
+
+import classes from "../Award.module.css";
 
 class scholarSheepAward extends Component {
   state = {
@@ -48,41 +51,41 @@ class scholarSheepAward extends Component {
   initialiseState = (fullMarkQuizzes) => {
     if (fullMarkQuizzes < this.state.limitOne) {
       this.setState({
-        awardName: "ScholarSheep I",
-        awardImage: ScholarSheepBronze,
+        awardName: "Scholar Sheep 0",
+        awardImage: NoAward,
         awardDescription: "Get full marks for 20 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitOne) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitOne,
       });
     } else if (fullMarkQuizzes < this.state.limitTwo) {
       this.setState({
-        awardName: "ScholarSheep II",
-        awardImage: ScholarSheepSilver,
+        awardName: "Scholar Sheep I",
+        awardImage: ScholarSheepBronze,
         awardDescription: "Get full marks for 80 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitTwo) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitTwo,
       });
     } else if (fullMarkQuizzes < this.state.limitThree) {
       this.setState({
-        awardName: "ScholarSheep III",
-        awardImage: ScholarSheepGold,
+        awardName: "Scholar Sheep II",
+        awardImage: ScholarSheepSilver,
         awardDescription: "Get full marks for 200 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitThree) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitThree,
       });
     } else if (fullMarkQuizzes < this.state.limitFour) {
       this.setState({
-        awardName: "ScholarSheep IV",
-        awardImage: ScholarSheepExpert,
+        awardName: "Scholar Sheep III",
+        awardImage: ScholarSheepGold,
         awardDescription: "Get full marks for 400 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitFour) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitFour,
       });
     } else {
       this.setState({
-        awardName: "ScholarSheep IV",
+        awardName: "Scholar Sheep IV",
         awardImage: ScholarSheepExpert,
-        awardDescription: "Get full marks for 400 quizzes",
+        awardDescription: "Maximum tier attained!",
         awardProgress: 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitFour,
       });
@@ -90,7 +93,7 @@ class scholarSheepAward extends Component {
   };
   render() {
     return (
-      <div>
+      <div className={classes.Award}>
         <Card style={{ marginTop: "1rem" }}>
           <Card.Img variant="top" src={this.state.awardImage} />
           <Card.Body>

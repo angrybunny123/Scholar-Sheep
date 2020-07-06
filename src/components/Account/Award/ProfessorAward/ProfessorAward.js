@@ -7,6 +7,9 @@ import ProfessorBronze from "../../../../assets/Awards/Professor_Bronze.png";
 import ProfessorSilver from "../../../../assets/Awards/Professor_Silver.png";
 import ProfessorGold from "../../../../assets/Awards/Professor_Gold.png";
 import ProfessorExpert from "../../../../assets/Awards/Professor_Expert.png";
+import NoAward from "../../../../assets/Awards/NoAward.png";
+
+import classes from "../Award.module.css";
 
 class professorAward extends Component {
   state = {
@@ -35,32 +38,32 @@ class professorAward extends Component {
   initialiseState = (quizzesCreated) => {
     if (quizzesCreated < this.state.limitOne) {
       this.setState({
-        awardName: "Professor I",
-        awardImage: ProfessorBronze,
+        awardName: "Professor Sheep 0",
+        awardImage: NoAward,
         awardDescription: "Create 15 quizzes",
         awardProgress: (quizzesCreated / this.state.limitOne) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitOne,
       });
     } else if (quizzesCreated < this.state.limitTwo) {
       this.setState({
-        awardName: "Professor II",
-        awardImage: ProfessorSilver,
+        awardName: "Professor Sheep I",
+        awardImage: ProfessorBronze,
         awardDescription: "Create 50 quizzes",
         awardProgress: (quizzesCreated / this.state.limitTwo) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitTwo,
       });
     } else if (quizzesCreated < this.state.limitThree) {
       this.setState({
-        awardName: "Professor III",
-        awardImage: ProfessorGold,
+        awardName: "Professor Sheep II",
+        awardImage: ProfessorSilver,
         awardDescription: "Create 100 quizzes",
         awardProgress: (quizzesCreated / this.state.limitThree) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitThree,
       });
     } else if (quizzesCreated < this.state.limitFour) {
       this.setState({
-        awardName: "Professor IV",
-        awardImage: ProfessorExpert,
+        awardName: "Professor Sheep III",
+        awardImage: ProfessorGold,
         awardDescription: "Create 200 quizzes",
         awardProgress: (quizzesCreated / this.state.limitFour) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitFour,
@@ -69,7 +72,7 @@ class professorAward extends Component {
       this.setState({
         awardName: "Professor IV",
         awardImage: ProfessorExpert,
-        awardDescription: "Create 200 quizzes",
+        awardDescription: "Maximum tier attained!",
         awardProgress: 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitFour,
       });
@@ -77,7 +80,7 @@ class professorAward extends Component {
   };
   render() {
     return (
-      <div>
+      <div className={classes.Award}>
         <Card style={{ marginTop: "1rem" }}>
           <Card.Img variant="top" src={this.state.awardImage} />
           <Card.Body>

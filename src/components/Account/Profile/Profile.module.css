@@ -10,7 +10,6 @@
 @media (min-width: 320px) {
   .displaypic {
     width: 80%;
-    height: 12rem;
     border: 3px solid black;
   }
 }
@@ -18,7 +17,6 @@
 @media (min-width: 641px) {
   .displaypic {
     width: 80%;
-    height: auto;
     border: 3px solid black;
   }
 }

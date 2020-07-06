@@ -19,3 +19,7 @@
 .buttons:hover {
   text-decoration: underline;
 }
+
+.awardInfo {
+  text-align: center;
+}

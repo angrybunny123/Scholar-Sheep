@@ -12,6 +12,7 @@ import BroadHorizonsAward from "../../components/Account/Award/BroadHorizonsAwar
 import HardWorkerAward from "../../components/Account/Award/HardWorkerAward/HardWorkerAward";
 import ProfessorAward from "../../components/Account/Award/ProfessorAward/ProfessorAward";
 import ScholarSheepAward from "../../components/Account/Award/ScholarSheepAward/ScholarSheepAward";
+import AwardInfo from "../../components/Account/Award/AwardInfo/AwardInfo";
 import * as actions from "../../store/actions/index";
 
 import Topics from "../../components/Topics/Topics";
@@ -23,6 +24,7 @@ import categories from "../../components/Topics/TopicsList";
 class Account extends Component {
   state = {
     showAllQuizzes: false,
+    showAwardInfo: false,
     quizHistoryLength: 0,
   };
   componentDidMount() {
@@ -36,14 +38,7 @@ class Account extends Component {
     );
   }
 
-  changeTopics = (topics) => {
-    this.setState({
-      topics: topics,
-    });
-  };
-
   render() {
-    console.log(this.props.quizzes, "account");
     let url = (
       <div className="sticky-top">
         <Profile />
@@ -55,6 +50,38 @@ class Account extends Component {
         <p style={{ textAlign: "center" }}>Loading Awards...</p>
       </div>
     );
+    let showAwardInfoToggleButton = (
+      <div className="text-right">
+        <button
+          className={classes.buttons}
+          onClick={() => {
+            this.setState({
+              showAwardInfo: true,
+            });
+          }}
+        >
+          >>More about awards
+        </button>
+      </div>
+    );
+    let awardInfo = null;
+    if (this.state.showAwardInfo === true) {
+      showAwardInfoToggleButton = (
+        <div className="text-right">
+          <button
+            className={classes.buttons}
+            onClick={() => {
+              this.setState({
+                showAwardInfo: false,
+              });
+            }}
+          >
+            >>Show less
+          </button>
+        </div>
+      );
+      awardInfo = <AwardInfo />;
+    }
     if (this.props.loading) {
       url = (
         <div className={classes.Profile}>
@@ -82,6 +109,8 @@ class Account extends Component {
               <ScholarSheepAward />
             </Col>
           </Row>
+          {awardInfo}
+          {showAwardInfoToggleButton}
         </Container>
       );
     }

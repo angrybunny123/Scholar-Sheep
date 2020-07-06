@@ -1,0 +1,35 @@
+.Image {
+  width: 5rem;
+}
+.AwardInfo {
+  margin: 0rem 3rem;
+  margin-top: 2rem;
+}
+.header {
+  margin-left: 1rem;
+}
+@media only screen and (min-width: 768px) {
+  .Image {
+    width: 5rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .Image {
+    width: 3.5rem;
+  }
+  .header {
+    margin-left: 0.3rem;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .Image {
+    width: 2rem;
+  }
+  .header {
+    margin-left: 0;
+    font-size: 0.7rem;
+  }
+}
