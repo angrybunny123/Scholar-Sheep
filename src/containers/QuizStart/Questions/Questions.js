@@ -12,7 +12,7 @@ class Questions extends Component {
 
   render() {
     const ans = this.props.inputAnswer;
-    return (
+    let page = (
       <div className={classes.Container}>
         <div className={classes.QuestionNumber}>
           Question {this.props.questionNumber + 1}
@@ -80,6 +80,122 @@ class Questions extends Component {
         </div>
       </div>
     );
+
+    if (
+      this.props.questionSubmitted &&
+      this.props.currentQuestionStatus === "Incorrect!"
+    ) {
+      page = (
+        <div className={classes.Container}>
+          <div className={classes.QuestionNumber}>
+            Question {this.props.questionNumber + 1}
+          </div>
+          <section>Click on the correct answer!</section>
+          <section>Selected answer: {ans} </section>
+          <div className={classes.QuestionContainer}>
+            <div>{this.props.Question}</div>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 1
+                ? classes.CorrectAnswer
+                : this.props.inputAnswer === 1
+                ? classes.WrongAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer1}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 2
+                ? classes.CorrectAnswer
+                : this.props.inputAnswer === 2
+                ? classes.WrongAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer2}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 3
+                ? classes.CorrectAnswer
+                : this.props.inputAnswer === 3
+                ? classes.WrongAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer3}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 4
+                ? classes.CorrectAnswer
+                : this.props.inputAnswer === 4
+                ? classes.WrongAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer4}</button>
+          </div>
+        </div>
+      );
+    } else if (
+      this.props.questionSubmitted &&
+      this.props.currentQuestionStatus === "Correct!"
+    ) {
+      page = (
+        <div className={classes.Container}>
+          <div className={classes.QuestionNumber}>
+            Question {this.props.questionNumber + 1}
+          </div>
+          <section>Click on the correct answer!</section>
+          <section>Selected answer: {ans} </section>
+          <div className={classes.QuestionContainer}>
+            <div>{this.props.Question}</div>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 1
+                ? classes.CorrectAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer1}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 2
+                ? classes.CorrectAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer2}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 3
+                ? classes.CorrectAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer3}</button>
+          </div>
+          <div
+            className={
+              this.props.correctAnswer === 4
+                ? classes.CorrectAnswer
+                : classes.OptionContainer
+            }
+          >
+            <button>{this.props.Answer4}</button>
+          </div>
+        </div>
+      );
+    }
+
+    return <div>{page}</div>;
   }
 }
 

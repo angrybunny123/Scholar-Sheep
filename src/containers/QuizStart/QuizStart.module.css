@@ -3,10 +3,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
-  padding: 2rem 0rem;
-  border-radius: 50%;
-  border: 2px solid black;
-  background-color: wheat;
+  padding: 1rem 0rem;
 }
 
 .ClockFinishing {
@@ -16,9 +13,6 @@
   font-weight: bold;
   text-align: center;
   padding: 2rem 0rem;
-  border-radius: 50%;
-  border: 2px solid black;
-  background-color: gold;
 }
 
 .FinalScore {
@@ -46,4 +40,50 @@
 .Message {
   font-size: 1rem;
   text-align: center;
+}
+
+.questionStatus {
+  font-size: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .questionStatus {
+    font-size: 2rem;
+  }
+  .Clock {
+    border: 1px solid black;
+    background-color: wheat;
+  }
+  .ClockFinishing {
+    border: 1px solid black;
+    background-color: wheat;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .questionStatus {
+    font-size: 2rem;
+  }
+  .Clock {
+    border: 1px solid black;
+    background-color: wheat;
+  }
+  .ClockFinishing {
+    border: 1px solid black;
+    background-color: wheat;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .questionStatus {
+    font-size: 1.05rem;
+  }
+  .Clock {
+    border: none;
+    background-color: white;
+  }
+  .ClockFinishing {
+    border: none;
+    background-color: white;
+  }
 }

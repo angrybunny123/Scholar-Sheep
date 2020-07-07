@@ -25,6 +25,8 @@ class QuizStart extends Component {
     quizLoaded: false,
     minutes: 0,
     seconds: 20,
+    questionSubmitted: false,
+    currentQuestionStatus: null,
   };
   componentDidMount() {
     this.props.onFetchUserData(
@@ -77,6 +79,22 @@ class QuizStart extends Component {
       inputAnswer: answer,
     });
   };
+  submitCurrentAnswer = (answer) => {
+    if (this.state.inputAnswer === this.state.currentAnswer) {
+      this.setState({
+        currentQuestionStatus: "Correct!",
+        questionSubmitted: true,
+        questionNumber: this.state.questionNumber,
+      });
+    } else {
+      this.setState({
+        currentQuestionStatus: "Incorrect!",
+        questionSubmitted: true,
+        questionNumber: this.state.questionNumber,
+      });
+    }
+  };
+
   nextQuestionHandler = (answer) => {
     let index = this.state.questionNumber;
     index = index + 1;
@@ -91,6 +109,8 @@ class QuizStart extends Component {
       questionNumber: index,
       currentAnswer: newQuestion.answer,
       score: marks,
+      questionSubmitted: false,
+      currentQuestionStatus: null,
     });
   };
   submitHandler = () => {
@@ -172,17 +192,16 @@ class QuizStart extends Component {
         <Button
           className="float-right"
           variant="outline-secondary"
-          onClick={this.nextQuestionHandler}
+          onClick={this.submitCurrentAnswer}
         >
-          Next question
+          Submit Answer
         </Button>
       </div>
     );
-    if (this.state.inputAnswer === "") {
+    if (this.state.questionSubmitted) {
       buttons = (
         <div>
           <Button
-            disabled
             className="float-right"
             variant="outline-secondary"
             onClick={this.nextQuestionHandler}
@@ -192,8 +211,35 @@ class QuizStart extends Component {
         </div>
       );
     }
+    if (this.state.inputAnswer === "") {
+      buttons = (
+        <div>
+          <Button disabled className="float-right" variant="outline-secondary">
+            Submit Answer
+          </Button>
+        </div>
+      );
+    }
 
-    if (this.state.questionNumber + 1 === this.state.questions.length) {
+    if (
+      this.state.questionNumber + 1 === this.state.questions.length &&
+      !this.state.questionSubmitted
+    ) {
+      buttons = (
+        <div>
+          <Button
+            className="float-right"
+            variant="outline-secondary"
+            onClick={this.submitCurrentAnswer}
+          >
+            Submit Answer
+          </Button>
+        </div>
+      );
+    } else if (
+      this.state.questionNumber + 1 === this.state.questions.length &&
+      this.state.questionSubmitted
+    ) {
       buttons = (
         <div>
           <Button
@@ -201,7 +247,7 @@ class QuizStart extends Component {
             variant="outline-success"
             onClick={this.submitHandler}
           >
-            Submit
+            Submit Quiz
           </Button>
         </div>
       );
@@ -209,6 +255,9 @@ class QuizStart extends Component {
 
     let timer = (
       <div className={classes.Clock}>
+        <div className={classes.questionStatus}>
+          {this.state.currentQuestionStatus}
+        </div>
         {seconds < 10 ? `0${seconds}` : seconds}
       </div>
     );
@@ -216,6 +265,9 @@ class QuizStart extends Component {
     if (`${minutes}` <= 0 && `${seconds}` < 10) {
       timer = (
         <div className={classes.ClockFinishing}>
+          <div className={classes.questionStatus}>
+            {this.state.currentQuestionStatus}
+          </div>
           {seconds < 10 ? `0${seconds}` : seconds}
         </div>
       );
@@ -233,9 +285,13 @@ class QuizStart extends Component {
               Answer4={this.state.currentQuestion.option4}
               click={this.answerHandler}
               inputAnswer={this.state.inputAnswer}
+              correctAnswer={this.state.currentAnswer}
               questionNumber={+this.state.questionNumber}
+              questionSubmitted={this.state.questionSubmitted}
+              currentQuestionStatus={this.state.currentQuestionStatus}
             />
             {buttons}
+            {/* //incorrect or correct */}
           </Col>
           <Col className="col-md-3 col-3">
             <div>

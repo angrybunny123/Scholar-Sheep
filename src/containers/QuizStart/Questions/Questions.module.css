@@ -32,6 +32,34 @@
 .OCS button {
   width: 100%;
   height: 4rem;
+  background-color: #00ffbf;
+  padding: 1rem;
+  border: 2px solid #627dc2;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.WrongAnswer {
+  padding: 0.5rem;
+}
+
+.WrongAnswer button {
+  width: 100%;
+  height: 4rem;
+  background-color: salmon;
+  padding: 1rem;
+  border: 2px solid #627dc2;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.CorrectAnswer {
+  padding: 0.5rem;
+}
+
+.CorrectAnswer button {
+  width: 100%;
+  height: 4rem;
   background-color: limegreen;
   padding: 1rem;
   border: 2px solid #627dc2;
