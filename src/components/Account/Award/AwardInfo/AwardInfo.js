@@ -4,6 +4,7 @@ import Silver from "../../../../assets/Awards/BroadHorizon_Silver.png";
 import Gold from "../../../../assets/Awards/BroadHorizon_Gold.png";
 import Expert from "../../../../assets/Awards/BroadHorizon_Expert.png";
 import NoAward from "../../../../assets/Awards/NoAward.png";
+import Table from "react-bootstrap/Table";
 
 import {
   Container,
@@ -56,6 +57,52 @@ class awardInfo extends Component {
               <div className={classes.header}>Expert</div>
             </Col>
           </Row>
+          <Table responsive style={{ marginTop: "1rem" }}>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Award</th>
+                <th>Bronze (+300 Points)</th>
+                <th>Silver (+750 Points)</th>
+                <th>Gold (+1200 Points)</th>
+                <th>Expert (+2000 Points)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Broad Horizons</td>
+                <td>Attempt 25 quizzes</td>
+                <td>Attempt 100 quizzes</td>
+                <td>Attempt 250 quizzes</td>
+                <td>Attempt 500 quizzes</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Hard Worker</td>
+                <td>Attempt 10 Daily Quizzes</td>
+                <td>Attempt 30 Daily Quizzes</td>
+                <td>Attempt 60 Daily Quizzes</td>
+                <td>Attempt 100 Daily Quizzes</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Professor Sheep</td>
+                <td>Create 15 quizzes</td>
+                <td>Create 50 quizzes</td>
+                <td>Create 100 quizzes</td>
+                <td>Create 200 quizzes</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Scholar Sheep</td>
+                <td>Full marks for 20 quizzes</td>
+                <td>Full marks for 80 quizzes</td>
+                <td>Full marks for 200 quizzes</td>
+                <td>Full marks for 400 quizzes</td>
+              </tr>
+            </tbody>
+          </Table>
           <Row style={{ marginTop: "2rem" }}>
             <Col className="col-6">
               <OverlayTrigger

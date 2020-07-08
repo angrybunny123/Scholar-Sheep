@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
-import { Container, Row, Image, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Image,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import classes from "./Profile.module.css";
 import { storage } from "../../../firebase";
 import cuteSheep from "../../../assets/cutesheep1.jpg";
@@ -15,6 +22,15 @@ const ImageUpload = (props) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+  };
+
+  const renderTooltip = (props) => {
+    return (
+      <Tooltip id="button-tooltip" {...props}>
+        Sheep points can be earned through attempting and creating quizzes. They
+        can also be earned through attaining awards!
+      </Tooltip>
+    );
   };
 
   const handleUpload = () => {
@@ -121,7 +137,16 @@ const ImageUpload = (props) => {
         </Row>
         <br />
         <Row className={classes.username}>@{props.userData.username}</Row>
-        <Row className={classes.profileDescription}>Sheep Points: 0</Row>
+        <Row className={classes.profileDescription}>
+          Sheep Points: {props.userData.sheepPoints}
+          <OverlayTrigger
+            placement="right"
+            delay={{ show: 100, hide: 100 }}
+            overlay={renderTooltip}
+          >
+            <div className={classes.questionMark}>?</div>
+          </OverlayTrigger>
+        </Row>
         {attempted}
         <Row className={classes.profileDescription}>
           Created: {props.createdQuizzes.length}

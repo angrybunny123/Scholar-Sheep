@@ -1,4 +1,10 @@
 .Title {
-    text-align: center;
-    margin: 20px;
+  text-align: center;
+  margin: 20px;
+}
+
+.Image {
+  width: 70%;
+  margin: auto;
+  display: block;
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 import classes from "./DailyQuiz.module.css";
 
@@ -105,11 +106,13 @@ class dailyQuiz extends Component {
               click={() => this.props.onStartQuiz(this.props.dailyQuiz)}
             />
           </Card>
-          <Rankings
-            rankingTitle="Top 3 Daily Quiz Rankings"
-            array={this.props.dailyQuiz.history}
-            numberOfQuestions={this.props.dailyQuiz.numberOfQuestions}
-          />
+          <Container fluid>
+            <Rankings
+              rankingTitle="Top 3 Daily Quiz Rankings"
+              array={this.props.dailyQuiz.history}
+              numberOfQuestions={this.props.dailyQuiz.numberOfQuestions}
+            />
+          </Container>
         </div>
       );
     }

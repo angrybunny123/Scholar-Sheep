@@ -91,6 +91,7 @@ export const signUp = (firstname, lastname, username, email, password) => {
           userId: response.data.localId,
           level: 0,
           dateJoined: Date().substring(4, 15),
+          sheepPoints: 0,
         };
         dispatch(signUpData(userData, response.data.idToken));
       })

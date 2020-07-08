@@ -165,18 +165,31 @@ class QuizStart extends Component {
           this.props.onSubmitQuiz(updatedQuiz, updatedQuiz.id);
         }
         let newData = [];
+        const sheepPointsToAdd =
+          (+this.state.score / +this.state.questions.length) * 20;
         if (this.props.userData.quizHistory) {
           newData = {
             ...this.props.userData,
             quizHistory: this.props.userData.quizHistory.concat(attemptedQuiz),
+            sheepPoints: this.props.userData.sheepPoints + sheepPointsToAdd,
           };
         } else {
           newData = {
             ...this.props.userData,
             quizHistory: [attemptedQuiz],
+            sheepPoints: this.props.userData.sheepPoints + sheepPointsToAdd,
           };
         }
-        this.props.onUpdateUserData(newData);
+        const dailyQuizBoolean = updatedQuiz.dailyQuiz ? true : false;
+        const fullMarksBoolean =
+          marks === this.state.questions.length ? true : false;
+
+        this.props.updateQuizAwardsData(
+          newData.quizHistory,
+          newData,
+          fullMarksBoolean,
+          dailyQuizBoolean
+        );
       }
     );
   };
@@ -316,9 +329,7 @@ class QuizStart extends Component {
 
     if (this.state.submitted === true) {
       let message = (
-        <p className={classes.Message}>
-          Good job you smart devil, you passed ;)
-        </p>
+        <p className={classes.Message}>Hooray! You passed the quiz! :D</p>
       );
       if (this.state.score < this.state.questions.length / 2) {
         message = (
@@ -330,7 +341,19 @@ class QuizStart extends Component {
           <p>
             Your score is: {this.state.score}/ {this.state.questions.length}
           </p>
+          <p className={classes.pointsEarned}>
+            Sheep Points earned:
+            {(+this.state.score / +this.state.questions.length) * 20}
+          </p>
           {message}
+          <p className={classes.award}>
+            {this.props.quizAwardsAttained.length === 0
+              ? null
+              : "Congratulations! You have attained the following award(s):" +
+                this.props.quizAwardsAttained.map((award) => {
+                  return award;
+                })}
+          </p>
           <Button
             variant="outline-success"
             onClick={() => this.props.history.push("/quizzes")}
@@ -388,6 +411,7 @@ const mapStateToProps = (state) => {
     loading: state.quizzes.loading,
     error: state.quizzes.error,
     userData: state.account.userData,
+    quizAwardsAttained: state.account.quizAwardsEarned,
   };
 };
 
@@ -396,7 +420,20 @@ const mapDispatchToProps = (dispatch) => {
     onFetchUserData: (token, userId) =>
       dispatch(actions.fetchUserData(token, userId)),
     onSubmitQuiz: (quiz, id) => dispatch(actions.submitQuiz(quiz, id)),
-    onUpdateUserData: (userData) => dispatch(actions.updateUserData(userData)),
+    updateQuizAwardsData: (
+      attemptedQuizzes,
+      userData,
+      fullMarksBoolean,
+      dailyQuizBoolean
+    ) =>
+      dispatch(
+        actions.updateQuizAwardsData(
+          attemptedQuizzes,
+          userData,
+          fullMarksBoolean,
+          dailyQuizBoolean
+        )
+      ),
   };
 };
 

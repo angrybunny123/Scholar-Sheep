@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import CoverPage from "./CoverPage/CoverPage";
 import QuestionPage from "./QuestionPage/QuestionPage";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
 
 import axios from "../../axios-scholarsheep";
 import classes from "./CreateQuiz.module.css";
@@ -116,6 +118,17 @@ class CreateQuiz extends Component {
     numberOfQuestions: 5,
   };
 
+  componentDidMount() {
+    this.props.onFetchUserData(
+      localStorage.getItem("token"),
+      localStorage.getItem("userId")
+    );
+    this.props.onFetchUserQuizzes(
+      localStorage.getItem("token"),
+      localStorage.getItem("userId")
+    );
+  }
+
   switchToQuestions = (data) => {
     this.setState({
       name: data.name,
@@ -172,6 +185,19 @@ class CreateQuiz extends Component {
     const newerQuestions = newQuestions.filter(
       (question) => question.question !== ""
     );
+    let newData = [];
+    const sheepPointsToAdd = 50;
+    newData = {
+      ...this.props.userData,
+      sheepPoints: this.props.userData.sheepPoints + sheepPointsToAdd,
+    };
+    //THIS IS WHERE SHEEP POINTS WILL BE UPDATED!!! AND ALSO CHECK IF AWARDS ARE OBTAINED!!!
+    if (this.props.userData.length !== 0) {
+      this.props.updateProfessorAward(
+        this.props.createdQuizzes.length,
+        newData
+      );
+    }
     this.setState(
       {
         questions: newerQuestions,
@@ -263,6 +289,13 @@ class CreateQuiz extends Component {
         page = (
           <div className={classes.Success}>
             <p>Your quiz has been submitted successfully :)</p>
+            <p className={classes.pointsEarned}>Sheep Points earned: 50</p>
+            <p style={{ fontSize: "1rem" }}>
+              {this.props.professorAwardAttained === ""
+                ? null
+                : "Congratulations! You have attained the following award:" +
+                  this.props.professorAwardAttained}
+            </p>
 
             <Button
               variant="secondary"
@@ -282,4 +315,23 @@ class CreateQuiz extends Component {
   }
 }
 
-export default CreateQuiz;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.account.userData,
+    createdQuizzes: state.account.createdQuizzes,
+    professorAwardAttained: state.account.professorAwardEarned,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchUserData: (token, userId) =>
+      dispatch(actions.fetchUserData(token, userId)),
+    onFetchUserQuizzes: (token, userId) =>
+      dispatch(actions.fetchUserQuizzes(token, userId)),
+    updateProfessorAward: (createdQuizzes, userData) =>
+      dispatch(actions.updateProfessorAwardData(createdQuizzes, userData)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuiz);

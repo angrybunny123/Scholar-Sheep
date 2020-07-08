@@ -11,6 +11,10 @@
   border: 1px solid black;
 }
 
+.pointsEarned {
+  font-size: 1.3rem;
+}
+
 .Error section {
   color: red;
   font-size: 1.2rem;

@@ -15,6 +15,7 @@ class Homepage extends Component {
       localStorage.getItem("token"),
       localStorage.getItem("userId")
     );
+    this.props.onFetchQuizzes();
   }
   render() {
     let userHeader = null;
@@ -56,6 +57,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFetchUserData: (token, userId) =>
       dispatch(actions.fetchUserData(token, userId)),
+    onFetchQuizzes: (pageOffSet, perPage) =>
+      dispatch(actions.fetchQuizzes(pageOffSet, perPage)),
   };
 };
 

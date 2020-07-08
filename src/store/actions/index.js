@@ -1,6 +1,12 @@
 export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
 
-export { fetchUserData, updateUserData, fetchUserQuizzes } from "./account";
+export {
+  fetchUserData,
+  updateUserData,
+  fetchUserQuizzes,
+  updateProfessorAwardData,
+  updateQuizAwardsData,
+} from "./account";
 
 export {
   fetchQuizzes,

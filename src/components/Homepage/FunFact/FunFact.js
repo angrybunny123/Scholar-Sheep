@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 
 import classes from "./FunFact.module.css";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 
 import axios from "../../../axios-scholarsheep";
+
+import adventureTimeHorse from "../../../assets/adventuretimehorse.jpg";
 
 class funFact extends Component {
   state = {
@@ -67,6 +70,13 @@ class funFact extends Component {
               <Card.Text>{this.state.funfact}</Card.Text>
             </Card.Body>
           </Card>
+          <Container style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
+            <img
+              src={adventureTimeHorse}
+              alt="adventuretimehorse"
+              className={classes.Image}
+            />
+          </Container>
         </div>
       );
     }

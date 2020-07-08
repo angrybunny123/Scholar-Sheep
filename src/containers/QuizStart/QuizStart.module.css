@@ -23,6 +23,14 @@
   border: 1px solid black;
 }
 
+.award {
+  font-size: 1rem;
+}
+
+.pointsEarned {
+  font-size: 1rem;
+}
+
 .UnselectedQuiz {
   margin: 2rem;
   padding: 5rem;

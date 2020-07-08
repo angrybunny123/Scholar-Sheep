@@ -8,6 +8,8 @@ const initialState = {
   createdQuizzes: [],
   quizzesLoading: false,
   quizzesError: "",
+  professorAwardEarned: "",
+  quizAwardsEarned: [],
 };
 
 const fetchUserDataStart = (state, action) => {
@@ -74,9 +76,23 @@ const fetchUserQuizzesFail = (state, action) => {
 const fetchUserQuizzesSuccess = (state, action) => {
   return {
     ...state,
-    createdQuizzes: action.quizzes,
+    createdQuizzes: action.quizzes.filter(
+      (quiz) => quiz.userId === localStorage.getItem("userId")
+    ),
     quizzesLoading: false,
     quizzesError: "",
+  };
+};
+const updateProfessorAwardString = (state, action) => {
+  return {
+    ...state,
+    professorAwardEarned: action.award,
+  };
+};
+const updateQuizAwardsString = (state, action) => {
+  return {
+    ...state,
+    quizAwardsEarned: action.awards,
   };
 };
 
@@ -100,7 +116,10 @@ const reducer = (state = initialState, action) => {
       return fetchUserQuizzesSuccess(state, action);
     case actionTypes.FETCH_QUIZZES_START:
       return fetchUserQuizzesStart(state, action);
-
+    case actionTypes.UPDATE_PROFESSOR_AWARD_STRING:
+      return updateProfessorAwardString(state, action);
+    case actionTypes.UPDATE_QUIZ_AWARDS_STRING:
+      return updateQuizAwardsString(state, action);
     default:
       return state;
   }
