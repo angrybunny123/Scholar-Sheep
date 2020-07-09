@@ -195,10 +195,6 @@ class QuizStart extends Component {
   };
 
   render() {
-    //The quiz is already here! What you need to do now is:
-    //Map the quiz into questions, add answer changed handlers,
-    //Compare with answer, update score accordingly, increment popularity
-    //count by 1, axios put back into the database :)
     const { minutes, seconds } = this.state;
     let buttons = (
       <div>

@@ -18,10 +18,10 @@ class professorAward extends Component {
     awardDescription: "",
     awardProgress: "",
     awardProgressFraction: "",
-    limitOne: 15,
-    limitTwo: 50,
-    limitThree: 100,
-    limitFour: 200,
+    limitOne: 2,
+    limitTwo: 4,
+    limitThree: 6,
+    limitFour: 8,
   };
   componentDidMount() {
     this.initialiseState(this.props.createdQuizzes.length);
@@ -40,7 +40,7 @@ class professorAward extends Component {
       this.setState({
         awardName: "Professor Sheep 0",
         awardImage: NoAward,
-        awardDescription: "Create 15 quizzes",
+        awardDescription: "Create 2 quizzes",
         awardProgress: (quizzesCreated / this.state.limitOne) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitOne,
       });
@@ -48,7 +48,7 @@ class professorAward extends Component {
       this.setState({
         awardName: "Professor Sheep I",
         awardImage: ProfessorBronze,
-        awardDescription: "Create 50 quizzes",
+        awardDescription: "Create 4 quizzes",
         awardProgress: (quizzesCreated / this.state.limitTwo) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitTwo,
       });
@@ -56,7 +56,7 @@ class professorAward extends Component {
       this.setState({
         awardName: "Professor Sheep II",
         awardImage: ProfessorSilver,
-        awardDescription: "Create 100 quizzes",
+        awardDescription: "Create 6 quizzes",
         awardProgress: (quizzesCreated / this.state.limitThree) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitThree,
       });
@@ -64,7 +64,7 @@ class professorAward extends Component {
       this.setState({
         awardName: "Professor Sheep III",
         awardImage: ProfessorGold,
-        awardDescription: "Create 200 quizzes",
+        awardDescription: "Create 8 quizzes",
         awardProgress: (quizzesCreated / this.state.limitFour) * 100,
         awardProgressFraction: quizzesCreated + "/" + this.state.limitFour,
       });

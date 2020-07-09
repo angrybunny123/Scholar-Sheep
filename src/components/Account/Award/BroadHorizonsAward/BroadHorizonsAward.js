@@ -18,10 +18,10 @@ class broadHorizonsAward extends Component {
     awardDescription: "",
     awardProgress: "",
     awardProgressFraction: "",
-    limitOne: 25,
-    limitTwo: 100,
-    limitThree: 250,
-    limitFour: 500,
+    limitOne: 5,
+    limitTwo: 10,
+    limitThree: 15,
+    limitFour: 20,
   };
   componentDidMount() {
     if (this.props.userData.quizHistory === undefined) {
@@ -43,7 +43,7 @@ class broadHorizonsAward extends Component {
       this.setState({
         awardName: "Broad Horizons 0",
         awardImage: NoAward,
-        awardDescription: "Attempt 25 quizzes",
+        awardDescription: "Attempt 5 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitOne) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitOne,
       });
@@ -51,7 +51,7 @@ class broadHorizonsAward extends Component {
       this.setState({
         awardName: "Broad Horizons I",
         awardImage: BroadHorizonsBronze,
-        awardDescription: "Attempt 100 quizzes",
+        awardDescription: "Attempt 10 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitTwo) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitTwo,
       });
@@ -59,7 +59,7 @@ class broadHorizonsAward extends Component {
       this.setState({
         awardName: "Broad Horizons II",
         awardImage: BroadHorizonsSilver,
-        awardDescription: "Attempt 250 quizzes",
+        awardDescription: "Attempt 15 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitThree) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitThree,
       });
@@ -67,7 +67,7 @@ class broadHorizonsAward extends Component {
       this.setState({
         awardName: "Broad Horizons III",
         awardImage: BroadHorizonsGold,
-        awardDescription: "Attempt 500 quizzes",
+        awardDescription: "Attempt 20 quizzes",
         awardProgress: (quizzesAttempted / this.state.limitFour) * 100,
         awardProgressFraction: quizzesAttempted + "/" + this.state.limitFour,
       });

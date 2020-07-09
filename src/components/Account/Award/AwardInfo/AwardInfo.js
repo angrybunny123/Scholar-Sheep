@@ -72,34 +72,34 @@ class awardInfo extends Component {
               <tr>
                 <td>1</td>
                 <td>Broad Horizons</td>
-                <td>Attempt 25 quizzes</td>
-                <td>Attempt 100 quizzes</td>
-                <td>Attempt 250 quizzes</td>
-                <td>Attempt 500 quizzes</td>
+                <td>Attempt 5 quizzes</td>
+                <td>Attempt 10 quizzes</td>
+                <td>Attempt 15 quizzes</td>
+                <td>Attempt 20 quizzes</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Hard Worker</td>
-                <td>Attempt 10 Daily Quizzes</td>
-                <td>Attempt 30 Daily Quizzes</td>
-                <td>Attempt 60 Daily Quizzes</td>
-                <td>Attempt 100 Daily Quizzes</td>
+                <td>Attempt 1 Daily Quizzes</td>
+                <td>Attempt 2 Daily Quizzes</td>
+                <td>Attempt 3 Daily Quizzes</td>
+                <td>Attempt 4 Daily Quizzes</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Professor Sheep</td>
-                <td>Create 15 quizzes</td>
-                <td>Create 50 quizzes</td>
-                <td>Create 100 quizzes</td>
-                <td>Create 200 quizzes</td>
+                <td>Create 2 quizzes</td>
+                <td>Create 4 quizzes</td>
+                <td>Create 6 quizzes</td>
+                <td>Create 8 quizzes</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>Scholar Sheep</td>
-                <td>Full marks for 20 quizzes</td>
-                <td>Full marks for 80 quizzes</td>
-                <td>Full marks for 200 quizzes</td>
-                <td>Full marks for 400 quizzes</td>
+                <td>Full marks for 4 quizzes</td>
+                <td>Full marks for 8 quizzes</td>
+                <td>Full marks for 12 quizzes</td>
+                <td>Full marks for 16 quizzes</td>
               </tr>
             </tbody>
           </Table>

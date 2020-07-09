@@ -149,18 +149,18 @@ export const updateQuizAwardsString = (awards) => {
 export const updateProfessorAwardData = (createdQuizzesLength, userData) => {
   let sheepPointsToAdd = 0;
   let awardAttained = "";
-  if (createdQuizzesLength + 1 === 15) {
+  if (createdQuizzesLength + 1 === 2) {
     sheepPointsToAdd += 300;
     awardAttained = "Professor Sheep Award (Bronze) +300 Sheep Points";
-  } else if (createdQuizzesLength + 1 === 50) {
+  } else if (createdQuizzesLength + 1 === 4) {
     sheepPointsToAdd = 750;
     awardAttained = "Professor Sheep Award (Silver) +750 Sheep Points";
-  } else if (createdQuizzesLength + 1 === 100) {
+  } else if (createdQuizzesLength + 1 === 6) {
     sheepPointsToAdd = 1200;
-    awardAttained = "Professor Sheep Award (Bronze) +1200 Sheep Points";
-  } else if (createdQuizzesLength + 1 === 200) {
+    awardAttained = "Professor Sheep Award (Gold) +1200 Sheep Points";
+  } else if (createdQuizzesLength + 1 === 8) {
     sheepPointsToAdd = 2000;
-    awardAttained = "Professor Sheep Award (Bronze) +2000 Sheep Points";
+    awardAttained = "Professor Sheep Award (Expert) +2000 Sheep Points";
   }
   const newData = {
     ...userData,
@@ -180,25 +180,25 @@ export const updateQuizAwardsData = (
 ) => {
   let awardsAttained = [];
   let sheepPointsToAdd = 0;
-  if (attemptedQuizzes.length === 25) {
+  if (attemptedQuizzes.length === 5) {
     sheepPointsToAdd += 300;
     awardsAttained = awardsAttained.concat(
       "Broad Horizons Sheep Award (Bronze) +300 Sheep Points"
     );
-  } else if (attemptedQuizzes.length === 100) {
+  } else if (attemptedQuizzes.length === 10) {
     sheepPointsToAdd += 750;
     awardsAttained = awardsAttained.concat(
       "Broad Horizons Sheep Award (Silver) +750 Sheep Points"
     );
-  } else if (attemptedQuizzes.length === 250) {
+  } else if (attemptedQuizzes.length === 15) {
     sheepPointsToAdd += 1200;
     awardsAttained = awardsAttained.concat(
       "Broad Horizons Sheep Award (Gold) +1200 Sheep Points"
     );
-  } else if (attemptedQuizzes.length === 500) {
+  } else if (attemptedQuizzes.length === 20) {
     sheepPointsToAdd += 2000;
     awardsAttained = awardsAttained.concat(
-      "Broad Horizons Sheep Award (Gold) +2000 Sheep Points"
+      "Broad Horizons Sheep Award (Expert) +2000 Sheep Points"
     );
   }
   if (fullMarksBoolean === true) {
@@ -208,22 +208,22 @@ export const updateQuizAwardsData = (
         fullMarkQuizzesLength += 1;
       }
     }
-    if (fullMarkQuizzesLength === 20) {
+    if (fullMarkQuizzesLength === 4) {
       sheepPointsToAdd += 300;
       awardsAttained = awardsAttained.concat(
         "Scholar Sheep Award (Bronze) +300 Sheep Points"
       );
-    } else if (fullMarkQuizzesLength === 80) {
+    } else if (fullMarkQuizzesLength === 8) {
       sheepPointsToAdd += 750;
       awardsAttained = awardsAttained.concat(
         "Scholar Sheep Award (Silver) +750 Sheep Points"
       );
-    } else if (fullMarkQuizzesLength === 200) {
+    } else if (fullMarkQuizzesLength === 12) {
       sheepPointsToAdd += 1200;
       awardsAttained = awardsAttained.concat(
         "Scholar Sheep Award (Gold) +1200 Sheep Points"
       );
-    } else if (fullMarkQuizzesLength === 400) {
+    } else if (fullMarkQuizzesLength === 16) {
       sheepPointsToAdd += 2000;
       awardsAttained = awardsAttained.concat(
         "Scholar Sheep Award (Silver) +2000 Sheep Points"
@@ -237,22 +237,22 @@ export const updateQuizAwardsData = (
         dailyQuizzesLength += 1;
       }
     }
-    if (dailyQuizzesLength === 10) {
+    if (dailyQuizzesLength === 1) {
       sheepPointsToAdd += 300;
       awardsAttained = awardsAttained.concat(
         "Hard Worker Award (Bronze) +300 Sheep Points"
       );
-    } else if (dailyQuizzesLength === 30) {
+    } else if (dailyQuizzesLength === 2) {
       sheepPointsToAdd += 750;
       awardsAttained = awardsAttained.concat(
         "Hard Worker Award (Silver) +750 Sheep Points"
       );
-    } else if (dailyQuizzesLength === 60) {
+    } else if (dailyQuizzesLength === 3) {
       sheepPointsToAdd += 1200;
       awardsAttained = awardsAttained.concat(
         "Hard Worker Award (Gold) +1200 Sheep Points"
       );
-    } else if (dailyQuizzesLength === 100) {
+    } else if (dailyQuizzesLength === 4) {
       sheepPointsToAdd += 2000;
       awardsAttained = awardsAttained.concat(
         "Hard Worker Award (Expert) +2000 Sheep Points"

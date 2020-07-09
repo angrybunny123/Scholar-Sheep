@@ -18,10 +18,10 @@ class hardWorkerAward extends Component {
     awardDescription: "",
     awardProgress: "",
     awardProgressFraction: "",
-    limitOne: 10,
-    limitTwo: 30,
-    limitThree: 60,
-    limitFour: 100,
+    limitOne: 1,
+    limitTwo: 2,
+    limitThree: 3,
+    limitFour: 4,
   };
   componentDidMount() {
     if (this.props.userData.quizHistory === undefined) {
@@ -49,7 +49,7 @@ class hardWorkerAward extends Component {
       this.setState({
         awardName: "Hard Worker 0",
         awardImage: NoAward,
-        awardDescription: "Do 10 Daily Quizzes",
+        awardDescription: "Do 1 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitOne) * 100,
         awardProgressFraction:
           dailyQuizzesAttempted + "/" + this.state.limitOne,
@@ -58,7 +58,7 @@ class hardWorkerAward extends Component {
       this.setState({
         awardName: "Hard Worker I",
         awardImage: HardWorkerBronze,
-        awardDescription: "Do 30 Daily Quizzes",
+        awardDescription: "Do 2 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitTwo) * 100,
         awardProgressFraction:
           dailyQuizzesAttempted + "/" + this.state.limitTwo,
@@ -67,7 +67,7 @@ class hardWorkerAward extends Component {
       this.setState({
         awardName: "Hard Worker II",
         awardImage: HardWorkerSilver,
-        awardDescription: "Do 60 Daily Quizzes",
+        awardDescription: "Do 3 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitThree) * 100,
         awardProgressFraction:
           dailyQuizzesAttempted + "/" + this.state.limitThree,
@@ -76,7 +76,7 @@ class hardWorkerAward extends Component {
       this.setState({
         awardName: "Hard Worker III",
         awardImage: HardWorkerGold,
-        awardDescription: "Do 100 Daily Quizzes",
+        awardDescription: "Do 4 Daily Quizzes",
         awardProgress: (dailyQuizzesAttempted / this.state.limitFour) * 100,
         awardProgressFraction:
           dailyQuizzesAttempted + "/" + this.state.limitFour,

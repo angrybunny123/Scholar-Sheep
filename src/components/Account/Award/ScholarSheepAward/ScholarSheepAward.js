@@ -18,10 +18,10 @@ class scholarSheepAward extends Component {
     awardDescription: "",
     awardProgress: "",
     awardProgressFraction: "",
-    limitOne: 20,
-    limitTwo: 80,
-    limitThree: 200,
-    limitFour: 400,
+    limitOne: 4,
+    limitTwo: 8,
+    limitThree: 12,
+    limitFour: 16,
   };
   componentDidMount() {
     if (this.props.userData.quizHistory === undefined) {
@@ -53,7 +53,7 @@ class scholarSheepAward extends Component {
       this.setState({
         awardName: "Scholar Sheep 0",
         awardImage: NoAward,
-        awardDescription: "Get full marks for 20 quizzes",
+        awardDescription: "Get full marks for 4 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitOne) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitOne,
       });
@@ -61,7 +61,7 @@ class scholarSheepAward extends Component {
       this.setState({
         awardName: "Scholar Sheep I",
         awardImage: ScholarSheepBronze,
-        awardDescription: "Get full marks for 80 quizzes",
+        awardDescription: "Get full marks for 8 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitTwo) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitTwo,
       });
@@ -69,7 +69,7 @@ class scholarSheepAward extends Component {
       this.setState({
         awardName: "Scholar Sheep II",
         awardImage: ScholarSheepSilver,
-        awardDescription: "Get full marks for 200 quizzes",
+        awardDescription: "Get full marks for 12 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitThree) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitThree,
       });
@@ -77,7 +77,7 @@ class scholarSheepAward extends Component {
       this.setState({
         awardName: "Scholar Sheep III",
         awardImage: ScholarSheepGold,
-        awardDescription: "Get full marks for 400 quizzes",
+        awardDescription: "Get full marks for 16 quizzes",
         awardProgress: (fullMarkQuizzes / this.state.limitFour) * 100,
         awardProgressFraction: fullMarkQuizzes + "/" + this.state.limitFour,
       });
