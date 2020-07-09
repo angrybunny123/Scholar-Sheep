@@ -12,6 +12,7 @@
   .displaypic {
     width: 80%;
     border: 3px solid black;
+    max-height: 20rem;
   }
 }
 
@@ -19,6 +20,8 @@
   .displaypic {
     width: 80%;
     border: 3px solid black;
+    max-height: none;
+    max-height: 20rem;
   }
 }
 

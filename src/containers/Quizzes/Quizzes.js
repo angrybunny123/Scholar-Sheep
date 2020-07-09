@@ -15,6 +15,8 @@ class Quizzes extends Component {
   };
   componentDidMount() {
     if (this.props.location.category) {
+      this.props.quizFilterStart();
+      this.props.onFetchQuizzes();
       console.log(this.props.location.category);
       const quizzesCopy = [...this.props.quizzes];
       const newQuizzes = quizzesCopy.filter(
@@ -53,6 +55,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearch: (quizzes) => dispatch(actions.quizFilter(quizzes)),
+    quizFilterStart: () => dispatch(actions.quizFilterStart()),
+    onFetchQuizzes: (pageOffSet, perPage) =>
+      dispatch(actions.fetchQuizzes(pageOffSet, perPage)),
   };
 };
 

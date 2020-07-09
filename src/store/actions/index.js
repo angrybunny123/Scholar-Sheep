@@ -15,6 +15,7 @@ export {
   quizFilter,
   quizSearch,
   fetchDailyQuiz,
+  quizFilterStart,
 } from "./quizzes";
 
 export { signUp, setSignUpRedirectPath, resetSignUp } from "./signup";
