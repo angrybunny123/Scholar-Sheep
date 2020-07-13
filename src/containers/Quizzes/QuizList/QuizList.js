@@ -51,8 +51,6 @@ class QuizList extends Component {
   };
 
   componentDidMount() {
-    this.props.onFetchQuizzes();
-
     const len = this.props.quizzes.length;
     const boolArr = new Array(len);
     for (var i = 0; i < len; ++i) {
