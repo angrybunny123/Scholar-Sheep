@@ -13,7 +13,6 @@ import Logout from "./containers/Auth/Logout/Logout";
 import CreateQuiz from "./containers/CreateQuiz/CreateQuiz";
 import Quizzes from "./containers/Quizzes/Quizzes";
 import QuizStart from "./containers/QuizStart/QuizStart";
-import Unauthenticated from "./containers/Unauthenticated/Unauthenticated";
 import SignUp from "./containers/SignUp/SignUp";
 import SignUpComplete from "./containers/SignUp/SignUpComplete/SignUpComplete";
 
@@ -36,23 +35,21 @@ class App extends Component {
           <Route path="/" exact component={Homepage} />
           <Route
             path="/account"
-            component={this.props.isAuthenticated ? Account : Unauthenticated}
+            component={this.props.isAuthenticated ? Account : Auth}
           />
           <Route
             path="/quizzes"
-            component={this.props.isAuthenticated ? Quizzes : Unauthenticated}
+            component={this.props.isAuthenticated ? Quizzes : Auth}
           />
           <Route
             path="/createQuiz"
-            component={
-              this.props.isAuthenticated ? CreateQuiz : Unauthenticated
-            }
+            component={this.props.isAuthenticated ? CreateQuiz : Auth}
           />
           <Route path="/about" component={About} />
           <Route path="/auth" component={Auth} />
           <Route
             path="/quizStart"
-            component={this.props.isAuthenticated ? QuizStart : Unauthenticated}
+            component={this.props.isAuthenticated ? QuizStart : Auth}
           />
           <Route path="/logout" component={Logout} />
           <Route path="/signup" component={SignUp} />
