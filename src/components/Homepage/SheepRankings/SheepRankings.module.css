@@ -7,3 +7,16 @@
   text-align: center;
   margin-top: 2rem;
 }
+
+.buttons {
+  background: none !important;
+  border: none;
+  padding: 1rem;
+  color: #069;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttons:hover {
+  text-decoration: underline;
+}
