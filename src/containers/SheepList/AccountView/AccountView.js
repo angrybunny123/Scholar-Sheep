@@ -12,6 +12,7 @@ import HardWorkerAward from "../Award/HardWorkerAward/HardWorkerAward";
 import ProfessorAward from "../Award/ProfessorAward/ProfessorAward";
 import ScholarSheepAward from "../Award/ScholarSheepAward/ScholarSheepAward";
 import AwardInfo from "../Award/AwardInfo/AwardInfo";
+import CreatedQuizzesTable from "./createdQuizzesTable";
 
 import Profile from "../Profile/Profile";
 import Spinner from "../../../components/UI/Spinner/Spinner";
@@ -104,6 +105,7 @@ class Account extends Component {
       awardInfo = <AwardInfo />;
     }
     let profile = <Spinner />;
+    let createdQuizTable = <Spinner />;
 
     if (!this.state.loading && !this.state.quizzesLoading) {
       const quizzes = this.state.quizzes.filter(
@@ -134,6 +136,7 @@ class Account extends Component {
       profile = (
         <Profile userData={this.state.userData} createdQuizzes={quizzes} />
       );
+      createdQuizTable = <CreatedQuizzesTable quizzes={quizzes} />;
     }
 
     let page = (
@@ -142,12 +145,16 @@ class Account extends Component {
           <Row>
             <Col
               className="col-md-3 col-sm-4 col-12"
-              style={{ backgroundColor: "lightblue", paddingBottom: "15rem" }}
+              style={{ backgroundColor: "lightblue" }}
             >
               {profile}
             </Col>
             <Col className="col-md-9 col-sm-8 col-12">
               <div className={classes.Account}>{awards}</div>
+              <Container>
+                <div className={classes.header}>Quizzes Created</div>
+                {createdQuizTable}
+              </Container>
             </Col>
           </Row>
         </Container>

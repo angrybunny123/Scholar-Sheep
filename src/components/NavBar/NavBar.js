@@ -40,6 +40,12 @@ const navBar = () => {
             </Link>
           </Nav.Link>
           <Nav.Link>
+            <Link className={classes.NavBarLink} to="/sheeplist/home">
+              {/* <img src={accountButton} alt="accountButton" /> */}
+              Hall of Fame
+            </Link>
+          </Nav.Link>
+          <Nav.Link>
             <Link className={classes.NavBarLink} to="/quizzes">
               {/* <img src={quizzesButton} alt="quizzesButton" /> */}
               Quizzes
