@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../../store/actions/index";
 import {
   Container,
   Row,
   Image,
-  Button,
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
 import classes from "./Profile.module.css";
-import { storage } from "../../../firebase";
 import cuteSheep from "../../../assets/cutesheep1.jpg";
 
 class Profile extends Component {

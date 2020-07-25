@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import classes from "./About.module.css";
 import Description from "../../components/About/Description/Description";
 import Creators from "../../components/About/Creators/Creators";
+import Footer from "../../components/footer/footer";
 
 import Kenneth from "../../assets/kenneth.jpg";
 import Pennhan from "../../assets/pennhan.jpg";
@@ -21,7 +22,7 @@ class About extends Component {
             So what are you waiting for? Become a scholarsheep TODAY!"
         />
         <Row className={classes.CreatorRow}>
-          <Col className="col-sm-6">
+          <Col className="col-md-6 col-sm-12 col-12">
             <Creators
               creator="Kenneth"
               image={Kenneth}
@@ -29,7 +30,7 @@ class About extends Component {
               link="https://www.instagram.com/angrybunny_/"
             />
           </Col>
-          <Col className="col-sm-6">
+          <Col className="col-md-6 col-sm-12 col-12">
             <Creators
               creator="Penn Han"
               image={Pennhan}
@@ -38,6 +39,7 @@ class About extends Component {
             />
           </Col>
         </Row>
+        <Footer />
       </div>
     );
   }
