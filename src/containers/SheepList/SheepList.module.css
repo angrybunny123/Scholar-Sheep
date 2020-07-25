@@ -1,0 +1,13 @@
+.Title {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem;
+  color: gold;
+  font-weight: 1000;
+  background-color: crimson;
+}
+
+.Unattempted {
+  text-align: center;
+  font-size: 2rem;
+}

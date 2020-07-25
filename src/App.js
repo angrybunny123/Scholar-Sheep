@@ -15,6 +15,7 @@ import Quizzes from "./containers/Quizzes/Quizzes";
 import QuizStart from "./containers/QuizStart/QuizStart";
 import SignUp from "./containers/SignUp/SignUp";
 import SignUpComplete from "./containers/SignUp/SignUpComplete/SignUpComplete";
+import SheepList from "./containers/SheepList/SheepList";
 
 import * as actions from "./store/actions/index";
 
@@ -54,6 +55,10 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signupcomplete" component={SignUpComplete} />
+          <Route
+            path="/sheeplist/:uid"
+            component={this.props.isAuthenticated ? SheepList : Auth}
+          />
         </div>
       </Router>
     );
