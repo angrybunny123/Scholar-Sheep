@@ -14,27 +14,26 @@ class About extends Component {
       <div>
         <h1 className={classes.TitleBox}>About Scholarsheep</h1>
         <Description
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Donec vehicula nec orci eu faucibus. Cras lacus erat, finibus in faucibus at, 
-                        mollis in elit. Sed dolor est, lacinia sit amet euismod a, viverra in nulla. 
-                        Morbi quis hendrerit lorem. Nam eu enim ut purus aliquet aliquam. Maecenas id consequat nibh, 
-                        accumsan vestibulum tortor. Etiam vitae mauris sed libero congue eleifend non vel risus. 
-                        Praesent sed magna sed eros feugiat ullamcorper. "
+          description="The Brainchild of two aspiring Software Developers, Kenneth and Penn Han. Scholarsheep 
+            was created for the Apollo 11 Grade of Orbital 2020. In this web application, users can attempt quickfire quizzes
+            that is set to expand their horizons and increase their general knowledge about the world. If interested, users can
+            also create their own quiz in our whole array of topics to share their knowledge to the world. 
+            So what are you waiting for? Become a scholarsheep TODAY!"
         />
         <Row className={classes.CreatorRow}>
-          <Col className="col-sm-6 col-12">
+          <Col className="col-sm-6">
             <Creators
               creator="Kenneth"
               image={Kenneth}
-              creatordesc="Kenneth desc"
+              creatordesc=""
               link="https://www.instagram.com/angrybunny_/"
             />
           </Col>
-          <Col className="col-sm-6 col-12">
+          <Col className="col-sm-6">
             <Creators
               creator="Penn Han"
               image={Pennhan}
-              creatordesc="Pennhan desc"
+              creatordesc=""
               link="https://www.linkedin.com/in/penn-han-lee-b703321a6/"
             />
           </Col>
